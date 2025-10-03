@@ -1,4 +1,30 @@
 {
+  "packageManager": "yarn@4.10.3",
   "name": "obsidian-steam-totp",
-  "packageManager": "yarn@4.9.2"
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && cp manifest.json styles.css dist",
+    "svelte-check": "svelte-check --tsconfig tsconfig.json"
+  },
+  "devDependencies": {
+    "@codemirror/state": "6.5.0",
+    "@codemirror/view": "6.38.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/steam-totp": "patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch",
+    "buffer": "^6.0.3",
+    "builtin-modules": "^5.0.0",
+    "esbuild": "^0.25.10",
+    "esbuild-svelte": "^0.9.3",
+    "eslint": "^9.37.0",
+    "obsidian": "^1.10.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "steam-totp": "patch:steam-totp@npm%3A2.1.2#~/.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch",
+    "svelte": "^5.39.8",
+    "svelte-check": "^4.3.2",
+    "svelte-preprocess": "^6.0.3",
+    "typescript": "^5.9.3"
+  }
 }

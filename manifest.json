@@ -1,0 +1,10 @@
+{
+  "id": "obsidian-steam-totp",
+  "name": "Steam TOTP Plugin",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Receive Steam Guard codes right in your Obsidian vault.",
+  "author": "dreamscached",
+  "authorUrl": "https://github.com/dreamscached",
+  "isDesktopOnly": false
+}
