@@ -3,11 +3,10 @@
 	import { onMount } from "svelte";
 
 	interface Props {
-		className?: HTMLElement["className"];
 		icon: string;
 	}
 
-	let { className, icon }: Props = $props();
+	let { icon }: Props = $props();
 
 	let anchor: HTMLSpanElement;
 
@@ -16,7 +15,7 @@
 	});
 </script>
 
-<span bind:this={anchor} class={["sg-icon", className]}></span>
+<span bind:this={anchor} class={"sg-icon"}></span>
 
 <style>
 	.sg-icon {
