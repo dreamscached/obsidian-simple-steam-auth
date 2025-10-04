@@ -25,6 +25,6 @@
 	});
 </script>
 
-<span>
+<span class="cm-inline-code">
 	{authCode}
 </span>

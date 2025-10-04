@@ -1,6 +1,7 @@
 import { parseYaml, Plugin } from "obsidian";
 
 import SteamGuardCode from "./SteamGuardCode.svelte";
+import { SteamGuardCodePlugin } from "./SteamGuardCodePlugin.js";
 import { MarkdownRenderComponent } from "./component.js";
 
 export default class SteamTotpPlugin extends Plugin {
@@ -14,5 +15,7 @@ export default class SteamTotpPlugin extends Plugin {
 				})
 			);
 		});
+
+		this.registerEditorExtension(SteamGuardCodePlugin.toExtension());
 	}
 }
