@@ -5,13 +5,14 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && cp manifest.json styles.css dist",
+    "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && cp manifest.json dist",
     "svelte-check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
+    "@codemirror/language": "^6.11.3",
     "@codemirror/state": "6.5.0",
     "@codemirror/view": "6.38.1",
-    "@codemirror/language": "^6.11.3",
+    "@lezer/common": "^1.2.3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/steam-totp": "patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch",
     "buffer": "^6.0.3",

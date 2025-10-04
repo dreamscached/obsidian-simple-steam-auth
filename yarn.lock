@@ -498,7 +498,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lezer/common@npm:^1.0.0, @lezer/common@npm:^1.1.0":
+"@lezer/common@npm:^1.0.0, @lezer/common@npm:^1.1.0, @lezer/common@npm:^1.2.3":
   version: 1.2.3
   resolution: "@lezer/common@npm:1.2.3"
   checksum: 10c0/fe9f8e111080ef94037a34ca2af1221c8d01c1763ba5ecf708a286185c76119509a5d19d924c8842172716716ddce22d7834394670c4a9432f0ba9f3b7c0f50d
@@ -1371,6 +1371,7 @@ __metadata:
     "@codemirror/language": "npm:^6.11.3"
     "@codemirror/state": "npm:6.5.0"
     "@codemirror/view": "npm:6.38.1"
+    "@lezer/common": "npm:^1.2.3"
     "@trivago/prettier-plugin-sort-imports": "npm:^5.2.2"
     "@types/steam-totp": "patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch"
     buffer: "npm:^6.0.3"
