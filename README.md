@@ -5,8 +5,9 @@ Obsidian notes!
 
 ## 🎞️ Demo
 
-![Revealed code demo](docs/screenshots/demo1.png)
-![Hover-reveal demo](docs/screenshots/demo2.webm)
+| Hover-to-reveal                                   | Always revealed                                   |
+|---------------------------------------------------|---------------------------------------------------|
+| ![Hover-reveal demo](docs/screenshots/demo2.gif)  | ![Revealed code demo](docs/screenshots/demo1.png) |
 
 ## 📓 How to use
 
