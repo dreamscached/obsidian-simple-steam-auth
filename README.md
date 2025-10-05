@@ -1,4 +1,4 @@
-# 🔑 Steam Guard TOTP Plugin
+# 🔑 Simple Steam Auth
 
 Dynamic, real-time updated Steam Guard code component right in your
 Obsidian notes!

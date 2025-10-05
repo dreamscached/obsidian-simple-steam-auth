@@ -1,6 +1,6 @@
 {
   "packageManager": "yarn@4.10.3",
-  "name": "obsidian-steam-totp",
+  "name": "obsidian-simple-steam-auth",
   "type": "module",
   "private": true,
   "scripts": {
