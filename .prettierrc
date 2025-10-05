@@ -27,7 +27,7 @@
 			"options": { "useTabs": false, "tabWidth": 2 }
 		},
 		{
-			"files": "*.svelte",
+			"files": "**/*.svelte",
 			"options": { "parser": "svelte" }
 		}
 	]

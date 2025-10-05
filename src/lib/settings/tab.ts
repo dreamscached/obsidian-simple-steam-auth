@@ -39,9 +39,9 @@ export class SteamTotpPluginSetingsTab extends PluginSettingTab {
 			.setDesc(
 				createFragment((descEl) => {
 					descEl.createDiv().innerHTML = `
-                    Always show Steam Guard code, without having to click on it to reveal.<br>
-                    <b>Warning!</b> This will lessen the security of your account.
-                `;
+						Always show Steam Guard code, without having to click on it to reveal.<br>
+						<b>Warning!</b> This will lessen the security of your account.
+					`;
 				})
 			)
 			.addToggle((toggle) =>

@@ -1,7 +1,6 @@
 name: Run checks on push
 
-on:
-  push
+on: push
 
 jobs:
   build:
