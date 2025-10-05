@@ -1989,9 +1989,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"obsidian-plugin-steam-totp@workspace:.":
+"obsidian-steam-totp@workspace:.":
   version: 0.0.0-use.local
-  resolution: "obsidian-plugin-steam-totp@workspace:."
+  resolution: "obsidian-steam-totp@workspace:."
   dependencies:
     "@codemirror/language": "npm:^6.11.3"
     "@codemirror/state": "npm:6.5.0"

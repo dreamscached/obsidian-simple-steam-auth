@@ -1,6 +1,6 @@
 {
   "packageManager": "yarn@4.10.3",
-  "name": "obsidian-plugin-steam-totp",
+  "name": "obsidian-steam-totp",
   "type": "module",
   "private": true,
   "scripts": {
