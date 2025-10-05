@@ -6,7 +6,7 @@
   "scripts": {
     "format": "prettier --write .",
     "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && node scripts/package.js",
-    "dev": "node esbuild.config.js && cp manifest.json dist",
+    "dev": "cp manifest.json dist && node esbuild.config.js",
     "svelte-check": "svelte-check --tsconfig tsconfig.json"
   },
   "devDependencies": {
