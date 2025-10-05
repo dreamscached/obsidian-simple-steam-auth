@@ -1,5 +1,6 @@
-import { WidgetType } from "@codemirror/view";
 import { mount, unmount, type ComponentProps } from "svelte";
+
+import { WidgetType } from "@codemirror/view";
 
 import SteamGuardCode from "./SteamGuardCode.svelte";
 

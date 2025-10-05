@@ -1,5 +1,6 @@
-import { MarkdownRenderChild } from "obsidian";
 import { mount, unmount, type Component, type MountOptions } from "svelte";
+
+import { MarkdownRenderChild } from "obsidian";
 
 type MountComponentConstructor<Props extends Record<string, unknown>> = Component<Props>;
 type MountComponentOptions<Props extends Record<string, unknown>> = MountOptions<Props> & {
