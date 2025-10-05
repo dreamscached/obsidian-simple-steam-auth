@@ -24,9 +24,15 @@ jobs:
       - name: Run build
         run: yarn build
 
+      - id: package-metadata
+        name: Extract project name and version
+        run: |
+          echo "name=$(jq -r .id manifest.json)" >> "$GITHUB_OUTPUT"
+          echo "version=$(jq -r .version manifest.json)" >> "$GITHUB_OUTPUT"
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           if-no-files-found: error
-          name: obsidian-steam-totp
-          path: dist/*.zip
+          name: "${{ steps.package-metadata.outputs.name }}-v${{ steps.package-metadata.outputs.version }}"
+          path: dist/zip/*

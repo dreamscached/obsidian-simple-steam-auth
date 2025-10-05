@@ -15,8 +15,7 @@ const license = join(projectRoot, "LICENSE");
 const notice = join(projectRoot, "NOTICE");
 
 const [pluginName, pluginVersion] = await getPackageNameVersion();
-const releaseBase = `${pluginName}-v${pluginVersion}`;
-const releaseZip = join(distDir, `${releaseBase}.zip`);
+const releaseZip = join(distDir, `${pluginName}-v${pluginVersion}.zip`);
 
 await mkdir(distZipDir, { recursive: true });
 await copyDistFile(mainJs);
@@ -48,7 +47,7 @@ function createDistZip() {
 		});
 
 		zip.pipe(ws);
-		zip.directory(distZipDir, releaseBase);
+		zip.directory(distZipDir, pluginName);
 		zip.finalize();
 	});
 }

@@ -1,10 +1,11 @@
 {
-  "id": "steam-totp",
-  "name": "Steam TOTP Plugin",
+  "id": "simple-steam-auth",
+  "name": "Simple Steam Auth",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Receive Steam Guard codes right in your Obsidian vault.",
+  "description": "Generate Steam Guard codes right in your Obsidian vault",
   "author": "dreamscached",
   "authorUrl": "https://github.com/dreamscached",
+  "fundingUrl": "https://buymeacoffee.com/dreamscached",
   "isDesktopOnly": false
 }
