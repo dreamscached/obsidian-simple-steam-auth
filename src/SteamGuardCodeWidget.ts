@@ -31,6 +31,6 @@ export class SteamGuardCodeWidget extends WidgetType {
 	}
 
 	override ignoreEvent(): boolean {
-		return false;
+		return true;
 	}
 }

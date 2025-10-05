@@ -1,6 +1,10 @@
 import { syntaxTree } from "@codemirror/language";
 import type { EditorView } from "@codemirror/view";
 import { type SyntaxNodeRef } from "@lezer/common";
+import type { MarkdownPostProcessorContext } from "obsidian";
+
+import SteamGuardCode from "./SteamGuardCode.svelte";
+import { MarkdownRenderComponent } from "./component.js";
 
 const steamGuardCodeAnchorPattern = /^::steam-guard-code::(.+)$/;
 
@@ -27,7 +31,7 @@ export function getSteamGuardCodeAnchorsAst(view: EditorView): SyntaxNodeRef[] {
 				if (node.type.name === "inline-code") {
 					const text = view.state.doc.sliceString(node.from, node.to);
 					if (steamGuardCodeAnchorPattern.test(text)) {
-						nodes.push(node);
+						nodes.push(node.node);
 					}
 				}
 			}
@@ -35,4 +39,23 @@ export function getSteamGuardCodeAnchorsAst(view: EditorView): SyntaxNodeRef[] {
 	}
 
 	return nodes;
+}
+
+export function SteamGuardCodeMarkdownPostProcessor(
+	el: HTMLElement,
+	ctx: MarkdownPostProcessorContext
+) {
+	getSteamGuardCodeAnchorsDom(el).forEach((it) => {
+		const sharedSecret = getSteamGuardCodeSharedSecret(it.textContent);
+		const anchor = document.createElement("span");
+		it.replaceWith(anchor);
+		ctx.addChild(
+			new MarkdownRenderComponent(SteamGuardCode, {
+				target: anchor,
+				props: {
+					sharedSecret
+				}
+			})
+		);
+	});
 }

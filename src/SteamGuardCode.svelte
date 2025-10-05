@@ -25,10 +25,8 @@
 		clearInterval(updateInterval);
 	});
 
-	async function onCopyButtonClick(e: Event) {
+	async function onCopyButtonClick() {
 		await navigator.clipboard.writeText(authCode!);
-		e.preventDefault();
-		e.stopPropagation();
 	}
 </script>
 

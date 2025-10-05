@@ -1,4 +1,3 @@
-import { syntaxTree } from "@codemirror/language";
 import { RangeSetBuilder, type Extension } from "@codemirror/state";
 import {
 	Decoration,
@@ -10,10 +9,11 @@ import {
 } from "@codemirror/view";
 
 import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
+import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "./common.js";
 
 export class SteamGuardCodePlugin implements PluginValue {
 	private decorations: DecorationSet;
-	private ranges: [number, number][] = [];
+	private decorationRanges: [number, number][] = [];
 
 	constructor(view: EditorView) {
 		this.decorations = this.rebuildDecorations(view);
@@ -28,13 +28,9 @@ export class SteamGuardCodePlugin implements PluginValue {
 	update(update: ViewUpdate): void {
 		if (update.docChanged || update.selectionSet || update.viewportChanged) {
 			const pos = update.state.selection.main.head;
-			const inAny = this.ranges.some(([from, to]) => pos >= from && pos <= to);
+			const inAny = this.decorationRanges.some(([from, to]) => pos >= from && pos <= to);
 			this.decorations = inAny ? Decoration.none : this.rebuildDecorations(update.view);
 			return;
-		}
-
-		if (update.docChanged || update.viewportChanged) {
-			this.decorations = this.rebuildDecorations(update.view);
 		}
 	}
 
@@ -42,33 +38,22 @@ export class SteamGuardCodePlugin implements PluginValue {
 
 	private rebuildDecorations(view: EditorView): DecorationSet {
 		const builder = new RangeSetBuilder<Decoration>();
-		this.ranges = []; // reset each rebuild
+		this.decorationRanges = [];
 
-		for (const vr of view.visibleRanges) {
-			syntaxTree(view.state).iterate({
-				from: vr.from,
-				to: vr.to,
-				enter: (node) => {
-					if (node.type.name === "inline-code") {
-						const text = view.state.doc.sliceString(node.from, node.to);
-						const match = /^::steam-guard-code::(.+)$/.exec(text);
-						if (match) {
-							// keep track of the range for cursor‑in‑block detection
-							this.ranges.push([node.from - 1, node.to + 1]);
+		getSteamGuardCodeAnchorsAst(view).forEach((it) => {
+			const text = view.state.doc.sliceString(it.from, it.to);
+			const sharedSecret = getSteamGuardCodeSharedSecret(text);
+			this.decorationRanges.push([it.from - 1, it.to + 1]);
+			builder.add(
+				it.from - 1,
+				it.to + 1,
+				Decoration.replace({
+					widget: new SteamGuardCodeWidget({ sharedSecret }),
+					inclusive: false
+				})
+			);
+		});
 
-							builder.add(
-								node.from - 1,
-								node.to + 1,
-								Decoration.replace({
-									widget: new SteamGuardCodeWidget({ sharedSecret: match[1] }),
-									inclusive: false
-								})
-							);
-						}
-					}
-				}
-			});
-		}
 		return builder.finish();
 	}
 }
