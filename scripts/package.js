@@ -10,6 +10,8 @@ const distZipDir = join(distDir, "zip");
 
 const mainJs = join(distDir, "main.js");
 const manifestJson = join(projectRoot, "manifest.json");
+const license = join(projectRoot, "LICENSE");
+const notice = join(projectRoot, "NOTICE");
 
 const [pluginName, pluginVersion] = await getPackageNameVersion();
 const releaseBase = `${pluginName}-v${pluginVersion}`;
@@ -18,6 +20,8 @@ const releaseZip = join(distDir, `${releaseBase}.zip`);
 await mkdir(distZipDir, { recursive: true });
 await copyDistFile(mainJs);
 await copyDistFile(manifestJson);
+await copyDistFile(license);
+await copyDistFile(notice);
 await createDistZip();
 
 async function getPackageNameVersion() {
