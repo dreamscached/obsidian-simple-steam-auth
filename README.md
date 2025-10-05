@@ -9,6 +9,15 @@ Obsidian notes!
 | ------------------------------------------------ | ------------------------------------------------- |
 | ![Hover-reveal demo](docs/screenshots/demo2.gif) | ![Revealed code demo](docs/screenshots/demo1.png) |
 
+## 📦 How to install
+
+### 🐈‍⬛ From Github
+
+1. Go to [latest release page](https://github.com/dreamscached/obsidian-simple-steam-auth/releases/latest)
+2. Scroll to the bottom and download the `simple-steam-auth-v1.x.x.zip` package
+3. Unpack the `simple-steam-auth` folder from the package into `<vault folder>/.obsidian/plugins`
+4. Enable Simple Steam Auth in Community plugins settings tab
+
 ## 📓 How to use
 
 > [!NOTE]
