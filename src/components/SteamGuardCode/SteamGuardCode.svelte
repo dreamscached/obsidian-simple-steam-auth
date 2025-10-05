@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
 	import SteamTotp from "steam-totp";
-	import Icon from "$components/ui/Icon.svelte";
 	import { getSettings } from "$lib/settings/settings.svelte";
+	import CopyButton from "$components/ui/CopyButton.svelte";
 
 	interface Props {
 		sharedSecret: string;
@@ -27,10 +27,6 @@
 	onDestroy(() => {
 		clearInterval(updateInterval);
 	});
-
-	async function onCopyButtonClick() {
-		await navigator.clipboard.writeText(authCode!);
-	}
 
 	function onCodeSpanMouseOver() {
 		reveal = true;
@@ -60,9 +56,7 @@
 		{/if}
 	</span>
 	{#if pluginSettings.showCopyButton}
-		<button class="sg-copy-btn" onclick={onCopyButtonClick}>
-			<Icon icon="copy" />
-		</button>
+		<CopyButton text={authCode} />
 	{/if}
 </div>
 
@@ -82,9 +76,5 @@
 
 	.sg-totp-code-hidden {
 		color: var(--text-muted);
-	}
-
-	.sg-copy-btn {
-		padding: var(--size-4-1) var(--size-4-2);
 	}
 </style>

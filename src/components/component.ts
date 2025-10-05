@@ -11,24 +11,24 @@ type MountedComponent = ReturnType<typeof mount>;
 export class MarkdownRenderComponent<
 	Props extends Record<string, unknown>
 > extends MarkdownRenderChild {
-	private readonly _mountConstructor: MountComponentConstructor<Props>;
-	private readonly _mountOptions: MountComponentOptions<Props>;
-	private _component?: MountedComponent;
+	private readonly mountConstructor: MountComponentConstructor<Props>;
+	private readonly mountOptions: MountComponentOptions<Props>;
+	private component?: MountedComponent;
 
 	constructor(
 		componentConstructor: MountComponentConstructor<Props>,
 		mountOptions: MountComponentOptions<Props>
 	) {
 		super(mountOptions.target);
-		this._mountConstructor = componentConstructor;
-		this._mountOptions = mountOptions;
+		this.mountConstructor = componentConstructor;
+		this.mountOptions = mountOptions;
 	}
 
 	override onload() {
-		this._component = mount(this._mountConstructor, this._mountOptions);
+		this.component = mount(this.mountConstructor, this.mountOptions);
 	}
 
 	override unload() {
-		return unmount(this._component!);
+		return unmount(this.component!);
 	}
 }
