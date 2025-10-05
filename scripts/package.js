@@ -1,8 +1,9 @@
-import archiver from "archiver";
 import { createWriteStream } from "node:fs";
 import { mkdir, cp, readFile } from "node:fs/promises";
 import { join, basename } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import archiver from "archiver";
 
 const projectRoot = fileURLToPath(new URL("..", import.meta.url));
 const distDir = join(projectRoot, "dist");

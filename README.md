@@ -11,11 +11,11 @@ Obsidian notes!
 ## 📓 How to use
 
 > [!NOTE]
-> You are expected to be familiar with where to obtain the *shared*
+> You are expected to be familiar with where to obtain the _shared_
 > secret for your Steam account. If not &mdash; see [this](https://gist.github.com/mathielo/8367e464baa73941a075bae4dd5eed90)
 > extensive guide.
 
-After installing this plugin, simply create an *inline* code block
+After installing this plugin, simply create an _inline_ code block
 with the following content inside the backticks:
 
 ```

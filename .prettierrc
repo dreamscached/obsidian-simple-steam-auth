@@ -11,6 +11,7 @@
 	"useTabs": true,
 	"plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-svelte"],
 	"importOrder": [
+		"^node:",
 		"^@?esbuild-?",
 		"^(@sveltejs|svelte)[-/]?",
 		"<THIRD_PARTY_MODULES>",
