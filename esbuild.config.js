@@ -36,7 +36,8 @@ const context = await esbuild.context({
 		"@lezer/common",
 		"@lezer/highlight",
 		"@lezer/lr",
-		...builtins
+		// We have our own impl bundled for web
+		...[...builtins].filter((it) => it !== "buffer")
 	],
 	plugins: [
 		TsconfigPathsPlugin({ tsconfig: "./tsconfig.json" }),
