@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && cp manifest.json dist",
+    "build": "tsc -p ./tsconfig.build.json && node esbuild.config.js production && node scripts/package.js",
     "dev": "node esbuild.config.js && cp manifest.json dist",
     "svelte-check": "svelte-check --tsconfig tsconfig.json"
   },
@@ -16,7 +16,9 @@
     "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@lezer/common": "^1.2.3",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/archiver": "^6.0.3",
     "@types/steam-totp": "patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch",
+    "archiver": "^7.0.1",
     "buffer": "^6.0.3",
     "builtin-modules": "^5.0.0",
     "esbuild": "^0.25.10",
