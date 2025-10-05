@@ -1,3 +1,4 @@
+import { TsconfigPathsPlugin } from "@esbuild-plugins/tsconfig-paths";
 import builtins from "builtin-modules";
 import esbuild from "esbuild";
 import esbuildSvelte from "esbuild-svelte";
@@ -36,6 +37,7 @@ const context = await esbuild.context({
 		...builtins
 	],
 	plugins: [
+		TsconfigPathsPlugin({ tsconfig: "./tsconfig.json" }),
 		esbuildSvelte({
 			preprocess: sveltePreprocess(),
 			compilerOptions: {

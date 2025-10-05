@@ -8,8 +8,9 @@ import {
 	type ViewUpdate
 } from "@codemirror/view";
 
+import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
+
 import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
-import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "./common.js";
 
 export class SteamGuardCodePlugin implements PluginValue {
 	private decorations: DecorationSet;

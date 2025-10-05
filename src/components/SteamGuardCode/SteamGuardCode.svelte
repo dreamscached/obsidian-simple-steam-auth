@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onDestroy, onMount } from "svelte";
 	import SteamTotp from "steam-totp";
-	import Icon from "./Icon.svelte";
+	import Icon from "$components/ui/Icon.svelte";
 
 	interface Props {
 		sharedSecret: string;

@@ -28,6 +28,12 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
+    "skipLibCheck": true,
+
+    // Path Aliases
+    "paths": {
+      "$components/*": ["./src/components/*"],
+      "$lib/*": ["./src/lib/*"]
+    }
   }
 }

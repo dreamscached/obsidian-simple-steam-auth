@@ -3,6 +3,7 @@
   "compilerOptions": {
     "sourceMap": false,
     "declaration": false,
-    "declarationMap": false
+    "declarationMap": false,
+    "noEmit": true
   }
 }

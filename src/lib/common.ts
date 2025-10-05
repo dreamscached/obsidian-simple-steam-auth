@@ -3,8 +3,8 @@ import type { EditorView } from "@codemirror/view";
 import { type SyntaxNodeRef } from "@lezer/common";
 import type { MarkdownPostProcessorContext } from "obsidian";
 
-import SteamGuardCode from "./SteamGuardCode.svelte";
-import { MarkdownRenderComponent } from "./component.js";
+import SteamGuardCode from "$components/SteamGuardCode/SteamGuardCode.svelte";
+import { MarkdownRenderComponent } from "$components/component.js";
 
 const steamGuardCodeAnchorPattern = /^::steam-guard-code::(.+)$/;
 

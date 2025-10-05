@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
 
-import { SteamGuardCodePlugin } from "./SteamGuardCodePlugin.js";
-import { SteamGuardCodeMarkdownPostProcessor } from "./common.js";
+import { SteamGuardCodePlugin } from "$components/SteamGuardCode/SteamGuardCodePlugin.js";
+import { SteamGuardCodeMarkdownPostProcessor } from "$lib/common.js";
 
 export default class SteamTotpPlugin extends Plugin {
 	override async onload() {
