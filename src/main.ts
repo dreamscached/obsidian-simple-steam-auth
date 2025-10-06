@@ -10,7 +10,7 @@ export default class SteamTotpPlugin extends Plugin {
 	override async onload() {
 		await this.loadSettings();
 		this.addSettingTab(new SteamTotpPluginSetingsTab(this.app, this));
-		this.registerEditorExtension(SteamGuardCodePlugin.toExtension());
+		this.registerEditorExtension(SteamGuardCodePlugin.createViewPlugin(this.app));
 		this.registerMarkdownPostProcessor(SteamGuardCodeMarkdownPostProcessor);
 	}
 
