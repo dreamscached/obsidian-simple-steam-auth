@@ -1,11 +1,11 @@
-import { defaultSettings, type SteamTotpPluginSetings } from "./types.js";
+import { defaultSettings, type SimpleSteamAuthSettings } from "./types.js";
 
-let settings = $state<SteamTotpPluginSetings>(defaultSettings);
+let settings = $state<SimpleSteamAuthSettings>(defaultSettings);
 
-export function getSettings(): SteamTotpPluginSetings {
+export function getSettings(): SimpleSteamAuthSettings {
 	return settings;
 }
 
-export function setSettings(newSettings: SteamTotpPluginSetings) {
+export function setSettings(newSettings: SimpleSteamAuthSettings) {
 	settings = newSettings;
 }
