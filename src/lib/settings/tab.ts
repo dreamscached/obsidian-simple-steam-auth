@@ -1,15 +1,15 @@
 import { App, PluginSettingTab, Setting } from "obsidian";
 
-import type SteamTotpPlugin from "../../main.js";
+import type SimpleSteamAuthPlugin from "../../main.js";
 
 import { getSettings } from "./settings.svelte.js";
-import type { SteamTotpPluginSetings } from "./types.js";
+import type { SimpleSteamAuthSettings } from "./types.js";
 
-export class SteamTotpPluginSetingsTab extends PluginSettingTab {
-	private readonly plugin: SteamTotpPlugin;
-	private settings: SteamTotpPluginSetings;
+export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
+	private readonly plugin: SimpleSteamAuthPlugin;
+	private settings: SimpleSteamAuthSettings;
 
-	constructor(app: App, plugin: SteamTotpPlugin) {
+	constructor(app: App, plugin: SimpleSteamAuthPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 		this.settings = getSettings();
