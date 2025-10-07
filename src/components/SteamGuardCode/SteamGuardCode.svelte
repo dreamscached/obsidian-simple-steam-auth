@@ -4,14 +4,17 @@
 	import { getSettings } from "$lib/settings/settings.svelte";
 	import CopyButton from "$components/ui/CopyButton.svelte";
 
+	type IntervalRef = ReturnType<typeof setInterval>;
+
 	interface Props {
+		/** Shared secret used to generate Steam Guard code. */
 		sharedSecret: string;
 	}
 
 	let { sharedSecret }: Props = $props();
 
 	let pluginSettings = getSettings();
-	let updateInterval = $state<ReturnType<typeof setInterval> | undefined>();
+	let updateInterval = $state<IntervalRef | undefined>();
 	let authCode = $state<string | undefined>();
 	let reveal = $state(false);
 
@@ -56,7 +59,7 @@
 		{/if}
 	</span>
 	{#if pluginSettings.showCopyButton}
-		<CopyButton text={authCode} />
+		<CopyButton text={`${authCode}`} />
 	{/if}
 </div>
 

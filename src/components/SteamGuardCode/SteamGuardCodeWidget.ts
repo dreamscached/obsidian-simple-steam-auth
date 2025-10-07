@@ -4,10 +4,18 @@ import { WidgetType } from "@codemirror/view";
 
 import SteamGuardCode from "./SteamGuardCode.svelte";
 
+/**
+ * CodeMirror {@link WidgetType} implementation to mount {@link SteamGuardCode}
+ * Svelte component onto the Markdown editor.
+ */
 export class SteamGuardCodeWidget extends WidgetType {
 	private readonly props: ComponentProps<typeof SteamGuardCode>;
 	private instance?: ReturnType<typeof mount>;
 
+	/**
+	 * Create a new instance of {@link SteamGuardCodeWidget} class.
+	 * @param props props to pass to {@link SteamGuardCode} component
+	 */
 	constructor(props: ComponentProps<typeof SteamGuardCode>) {
 		super();
 		this.props = props;
