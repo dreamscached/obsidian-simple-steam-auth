@@ -13,16 +13,25 @@ import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib
 
 import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
 
+/**
+ * CodeMirror ViewPlugin (created using {@link createViewPlugin}) to mount
+ * {@link SteamGuardCodeWidget} onto the Markdown editor.
+ */
 export class SteamGuardCodePlugin implements PluginValue {
 	private readonly app: App;
 	private decorations: DecorationSet;
 	private decorationRanges: [number, number][] = [];
 
-	constructor(app: App, view: EditorView) {
+	private constructor(app: App, view: EditorView) {
 		this.app = app;
 		this.decorations = this.rebuildDecorations(view);
 	}
 
+	/**
+	 * Creates a ViewPlugin instance wrapping this class.
+	 * @param app Obsidian {@link App} instance
+	 * @returns CodeMirror {@link ViewPlugin} instance wrapping this class
+	 */
 	static createViewPlugin(app: App): Extension {
 		return ViewPlugin.fromClass(
 			class extends SteamGuardCodePlugin {
@@ -50,10 +59,18 @@ export class SteamGuardCodePlugin implements PluginValue {
 		}
 	}
 
-	destroy(): void {}
+	destroy(): void {
+		this.decorations = Decoration.none;
+		this.decorationRanges = [];
+	}
 
+	/**
+	 * Checks whether the current active editor is in source mode.
+	 * @returns `true` if editor is in source mode, `false` if in live preview mode
+	 */
 	private isSourceMode(): boolean {
 		// HACK: this isn't exactly a good way to detect source mode
+		// https://github.com/dreamscached/obsidian-simple-steam-auth/issues/8
 		const contentEl = this.app.workspace.getActiveViewOfType(MarkdownView)?.contentEl;
 		const sourceView = contentEl?.querySelector("div.markdown-source-view");
 		if (!sourceView) return false;

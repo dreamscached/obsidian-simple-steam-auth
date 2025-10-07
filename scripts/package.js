@@ -42,7 +42,7 @@ function createDistZip() {
 	return new Promise((resolve, reject) => {
 		ws.on("error", (err) => reject(err));
 		ws.on("close", () => {
-			console.log(` ✔ ${basename(releaseZip)} built`);
+			console.log(` ✔ Built ${basename(releaseZip)}`);
 			resolve();
 		});
 

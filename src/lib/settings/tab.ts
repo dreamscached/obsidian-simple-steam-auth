@@ -22,6 +22,7 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	}
 
 	private addShowCopyButton() {
+		// TODO i18n
 		new Setting(this.containerEl)
 			.setName("Show copy button")
 			.setDesc("Toggle display of copy button next to the Steam Guard code")
@@ -34,6 +35,7 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	}
 
 	private addShowCodeByDefault() {
+		// TODO i18n
 		new Setting(this.containerEl)
 			.setName("Show code by default")
 			.setDesc(
