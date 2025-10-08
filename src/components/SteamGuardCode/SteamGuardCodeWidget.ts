@@ -1,6 +1,7 @@
 import { mount, unmount, type ComponentProps } from "svelte";
 
 import { WidgetType } from "@codemirror/view";
+import deepEqual from "deep-equal";
 
 import SteamGuardCode from "./SteamGuardCode.svelte";
 
@@ -19,6 +20,11 @@ export class SteamGuardCodeWidget extends WidgetType {
 	constructor(props: ComponentProps<typeof SteamGuardCode>) {
 		super();
 		this.props = props;
+	}
+
+	override eq(widget: SteamGuardCodeWidget): boolean {
+		// Prevent re-drawing instances with same props
+		return deepEqual(widget.props, this.props);
 	}
 
 	override toDOM(): HTMLElement {

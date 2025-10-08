@@ -1,4 +1,4 @@
-import { RangeSetBuilder, type Extension } from "@codemirror/state";
+import { EditorSelection, type Extension, Range, StateField } from "@codemirror/state";
 import {
 	Decoration,
 	EditorView,
@@ -7,7 +7,8 @@ import {
 	type PluginValue,
 	type ViewUpdate
 } from "@codemirror/view";
-import { editorLivePreviewField } from "obsidian";
+import type { SyntaxNodeRef } from "@lezer/common";
+import { editorInfoField, editorLivePreviewField } from "obsidian";
 
 import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
 
@@ -19,10 +20,9 @@ import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
  */
 export class SteamGuardCodePlugin implements PluginValue {
 	private decorations: DecorationSet;
-	private decorationRanges: [number, number][] = [];
 
 	private constructor(view: EditorView) {
-		this.decorations = this.rebuildDecorations(view);
+		this.decorations = this.renderDecorations(view);
 	}
 
 	/**
@@ -43,43 +43,107 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		// @ts-expect-error this is properly typed
-		if (!update.state.field(editorLivePreviewField)) {
+		if (!update.state.field(editorLivePreviewField as unknown as StateField<boolean>)) {
 			this.decorations = Decoration.none;
-			this.decorationRanges = [];
 			return;
 		}
 
-		if (update.docChanged || update.selectionSet || update.viewportChanged) {
-			const pos = update.state.selection.main.head;
-			const inAny = this.decorationRanges.some(([from, to]) => pos >= from && pos <= to);
-			this.decorations = inAny ? Decoration.none : this.rebuildDecorations(update.view);
+		if (update.docChanged) {
+			this.decorations = this.decorations.map(update.changes);
+			this.updateTree(update.view);
+		} else if (update.viewportChanged) {
+			this.decorations = this.renderDecorations(update.view);
+		} else if (update.selectionSet) {
+			this.updateTree(update.view);
 		}
 	}
 
 	destroy(): void {
 		this.decorations = Decoration.none;
-		this.decorationRanges = [];
 	}
 
-	private rebuildDecorations(view: EditorView): DecorationSet {
-		const builder = new RangeSetBuilder<Decoration>();
-		this.decorationRanges = [];
+	private updateTree(view: EditorView) {
+		getSteamGuardCodeAnchorsAst(view).forEach((it) => {
+			if (this.isShouldRenderNode(view, it)) {
+				this.addDecoration(it, view);
+			} else {
+				this.removeDecoration(it);
+			}
+		});
+	}
+
+	private renderDecorations(view: EditorView): DecorationSet {
+		const widgets: Range<Decoration>[] = [];
 
 		getSteamGuardCodeAnchorsAst(view).forEach((it) => {
-			const text = view.state.doc.sliceString(it.from, it.to);
-			const sharedSecret = getSteamGuardCodeSharedSecret(text);
-			this.decorationRanges.push([it.from - 1, it.to + 1]);
-			builder.add(
-				it.from - 1,
-				it.to + 1,
-				Decoration.replace({
-					widget: new SteamGuardCodeWidget({ sharedSecret }),
-					inclusive: false
-				})
-			);
+			if (this.isShouldRenderNode(view, it)) {
+				const decoration = this.createDecoration(it, view);
+				if (decoration) widgets.push(decoration);
+			}
 		});
 
-		return builder.finish();
+		return Decoration.set(widgets, true);
+	}
+
+	private isShouldRenderNode(view: EditorView, node: SyntaxNodeRef): boolean {
+		const start = node.from;
+		const end = node.to;
+		const sel = view.state.selection;
+		return !this.isSelectionOverlapsRanges(sel, start - 1, end + 1);
+	}
+
+	private createDecoration(node: SyntaxNodeRef, view: EditorView): Range<Decoration> | undefined {
+		const start = node.from;
+		const end = node.to;
+
+		if (view.state.doc.sliceString(end, end + 1) === "\n") {
+			return;
+		}
+
+		const text = view.state.doc.sliceString(start, end);
+		const sharedSecret = getSteamGuardCodeSharedSecret(text);
+
+		return Decoration.replace({
+			widget: new SteamGuardCodeWidget({ sharedSecret }),
+			inclusive: false,
+			block: false
+		}).range(start - 1, end + 1);
+	}
+
+	private addDecoration(node: SyntaxNodeRef, view: EditorView) {
+		const from = node.from - 1;
+		const to = node.to + 1;
+		if (!this.hasDecoration(from, to)) {
+			const file = view.state.field(editorInfoField as unknown as StateField<unknown>);
+			if (!file) return;
+			const decoration = this.createDecoration(node, view)?.value;
+			if (decoration) {
+				this.decorations = this.decorations.update({
+					add: [{ from, to, value: decoration }]
+				});
+			}
+		}
+	}
+
+	private hasDecoration(from: number, to: number): boolean {
+		let exists = false;
+		this.decorations.between(from, to, () => {
+			exists = true;
+		});
+		return exists;
+	}
+
+	private removeDecoration(node: SyntaxNodeRef) {
+		this.decorations.between(node.from - 1, node.to + 1, (from, to) => {
+			this.decorations = this.decorations.update({
+				filterFrom: from,
+				filterTo: to,
+				filter: () => false
+			});
+		});
+	}
+
+	private isSelectionOverlapsRanges(sel: EditorSelection, from: number, to: number) {
+		return sel.ranges.some((it) => it.from <= to && it.to >= from);
 	}
 }
