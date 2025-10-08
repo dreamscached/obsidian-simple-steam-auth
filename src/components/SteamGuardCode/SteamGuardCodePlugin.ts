@@ -7,27 +7,33 @@ import {
 	type PluginValue,
 	type ViewUpdate
 } from "@codemirror/view";
-import { MarkdownView, type App } from "obsidian";
+import { editorLivePreviewField } from "obsidian";
 
 import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
 
 import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
 
+/**
+ * CodeMirror ViewPlugin (created using {@link createViewPlugin}) to mount
+ * {@link SteamGuardCodeWidget} onto the Markdown editor.
+ */
 export class SteamGuardCodePlugin implements PluginValue {
-	private readonly app: App;
 	private decorations: DecorationSet;
 	private decorationRanges: [number, number][] = [];
 
-	constructor(app: App, view: EditorView) {
-		this.app = app;
+	private constructor(view: EditorView) {
 		this.decorations = this.rebuildDecorations(view);
 	}
 
-	static createViewPlugin(app: App): Extension {
+	/**
+	 * Creates a ViewPlugin instance wrapping this class.
+	 * @returns CodeMirror {@link ViewPlugin} instance wrapping this class
+	 */
+	static createViewPlugin(): Extension {
 		return ViewPlugin.fromClass(
 			class extends SteamGuardCodePlugin {
 				constructor(view: EditorView) {
-					super(app, view);
+					super(view);
 				}
 			},
 			{
@@ -37,7 +43,8 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		if (this.isSourceMode()) {
+		// @ts-expect-error this is properly typed
+		if (!update.state.field(editorLivePreviewField)) {
 			this.decorations = Decoration.none;
 			this.decorationRanges = [];
 			return;
@@ -50,14 +57,9 @@ export class SteamGuardCodePlugin implements PluginValue {
 		}
 	}
 
-	destroy(): void {}
-
-	private isSourceMode(): boolean {
-		// HACK: this isn't exactly a good way to detect source mode
-		const contentEl = this.app.workspace.getActiveViewOfType(MarkdownView)?.contentEl;
-		const sourceView = contentEl?.querySelector("div.markdown-source-view");
-		if (!sourceView) return false;
-		return !sourceView.hasClass("is-live-preview");
+	destroy(): void {
+		this.decorations = Decoration.none;
+		this.decorationRanges = [];
 	}
 
 	private rebuildDecorations(view: EditorView): DecorationSet {

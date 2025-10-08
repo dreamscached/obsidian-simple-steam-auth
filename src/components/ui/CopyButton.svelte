@@ -1,20 +1,31 @@
+<!--
+Simple copy button, used to copy text content on click.
+@component
+-->
+
 <script lang="ts">
+	import { Notice } from "obsidian";
 	import Icon from "./Icon.svelte";
 
 	interface Props {
-		text: string | undefined;
+		/** Text content to copy. */
+		text: string;
+		/** Whether a button is enabled. */
+		disabled?: HTMLButtonElement["disabled"];
 	}
 
-	let { text }: Props = $props();
+	let { text, disabled }: Props = $props();
 
 	async function onclick() {
 		if (text) {
 			await navigator.clipboard.writeText(text);
+			// TODO i18n
+			new Notice("Copied to your clipboard");
 		}
 	}
 </script>
 
-<button class="sg-copy-btn" {onclick}>
+<button class="sg-copy-btn" {disabled} {onclick}>
 	<Icon icon="copy" />
 </button>
 
