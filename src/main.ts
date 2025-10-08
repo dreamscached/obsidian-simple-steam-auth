@@ -35,7 +35,7 @@ export default class SimpleSteamAuthPlugin extends Plugin {
 	}
 
 	private registerSteamGuardCodeComponent() {
-		this.registerEditorExtension(SteamGuardCodePlugin.createViewPlugin(this.app));
+		this.registerEditorExtension(SteamGuardCodePlugin.createViewPlugin());
 		this.registerMarkdownPostProcessor(SteamGuardCodeMarkdownPostProcessor);
 	}
 }
