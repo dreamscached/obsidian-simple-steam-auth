@@ -1,4 +1,4 @@
-import { EditorSelection, type Extension, Range } from "@codemirror/state";
+import { EditorSelection, type Extension, Range, StateField } from "@codemirror/state";
 import {
 	Decoration,
 	EditorView,
@@ -43,8 +43,7 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		// @ts-expect-error
-		if (!update.state.field(editorLivePreviewField)) {
+		if (!update.state.field(editorLivePreviewField as unknown as StateField<boolean>)) {
 			this.decorations = Decoration.none;
 			return;
 		}
@@ -115,8 +114,7 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const from = node.from - 1;
 		const to = node.to + 1;
 		if (!this.hasDecoration(from, to)) {
-			// @ts-expect-error this is properly typed
-			const file = view.state.field(editorInfoField);
+			const file = view.state.field(editorInfoField as unknown as StateField<unknown>);
 			if (!file) return;
 			const decoration = this.createDecoration(node, view)?.value;
 			if (decoration) {

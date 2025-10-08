@@ -45,7 +45,7 @@ export class SteamGuardCodeWidget extends WidgetType {
 		}
 	}
 
-	override ignoreEvent(e: MouseEvent | Event): boolean {
+	override ignoreEvent(): boolean {
 		return true;
 	}
 }
