@@ -7,7 +7,7 @@ import {
 	type PluginValue,
 	type ViewUpdate
 } from "@codemirror/view";
-import { editorLivePreviewField, type App } from "obsidian";
+import { editorLivePreviewField } from "obsidian";
 
 import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
 
@@ -18,25 +18,22 @@ import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
  * {@link SteamGuardCodeWidget} onto the Markdown editor.
  */
 export class SteamGuardCodePlugin implements PluginValue {
-	private readonly app: App;
 	private decorations: DecorationSet;
 	private decorationRanges: [number, number][] = [];
 
-	private constructor(app: App, view: EditorView) {
-		this.app = app;
+	private constructor(view: EditorView) {
 		this.decorations = this.rebuildDecorations(view);
 	}
 
 	/**
 	 * Creates a ViewPlugin instance wrapping this class.
-	 * @param app Obsidian {@link App} instance
 	 * @returns CodeMirror {@link ViewPlugin} instance wrapping this class
 	 */
-	static createViewPlugin(app: App): Extension {
+	static createViewPlugin(): Extension {
 		return ViewPlugin.fromClass(
 			class extends SteamGuardCodePlugin {
 				constructor(view: EditorView) {
-					super(app, view);
+					super(view);
 				}
 			},
 			{
