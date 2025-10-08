@@ -7,7 +7,7 @@ import {
 	type PluginValue,
 	type ViewUpdate
 } from "@codemirror/view";
-import { MarkdownView, type App } from "obsidian";
+import { editorLivePreviewField, type App } from "obsidian";
 
 import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
 
@@ -46,7 +46,8 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		if (this.isSourceMode()) {
+		// @ts-expect-error this is properly typed
+		if (!update.state.field(editorLivePreviewField)) {
 			this.decorations = Decoration.none;
 			this.decorationRanges = [];
 			return;
@@ -62,19 +63,6 @@ export class SteamGuardCodePlugin implements PluginValue {
 	destroy(): void {
 		this.decorations = Decoration.none;
 		this.decorationRanges = [];
-	}
-
-	/**
-	 * Checks whether the current active editor is in source mode.
-	 * @returns `true` if editor is in source mode, `false` if in live preview mode
-	 */
-	private isSourceMode(): boolean {
-		// HACK: this isn't exactly a good way to detect source mode
-		// https://github.com/dreamscached/obsidian-simple-steam-auth/issues/8
-		const contentEl = this.app.workspace.getActiveViewOfType(MarkdownView)?.contentEl;
-		const sourceView = contentEl?.querySelector("div.markdown-source-view");
-		if (!sourceView) return false;
-		return !sourceView.hasClass("is-live-preview");
 	}
 
 	private rebuildDecorations(view: EditorView): DecorationSet {
