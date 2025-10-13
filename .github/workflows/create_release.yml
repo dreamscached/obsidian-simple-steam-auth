@@ -2,8 +2,8 @@ name: Build and create a release on tag push to master
 
 on:
   push:
-    branches:
-      - master
+    # branches:
+    #   - master
 
 jobs:
   build:
