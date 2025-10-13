@@ -2,8 +2,8 @@ name: Build and create a release on tag push to master
 
 on:
   push:
-    # branches:
-    #   - master
+    branches:
+      - master
 
 jobs:
   build:
@@ -49,12 +49,12 @@ jobs:
           subject-name: "${{ steps.package-metadata.outputs.name }}-v${{ steps.package-metadata.outputs.version }}"
           subject-digest: sha256:${{ steps.upload-artifact.outputs.artifact-digest }}
 
-      # - name: Draft a new release
-      #   uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090
-      #   if: github.ref_type == 'tag'
-      #   with:
-      #     draft: true
-      #     files: |
-      #       dist/*.zip
-      #       dist/main.js
-      #       dist/manifest.json
+      - name: Draft a new release
+        uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090
+        if: github.ref_type == 'tag'
+        with:
+          draft: true
+          files: |
+            dist/*.zip
+            dist/main.js
+            dist/manifest.json
