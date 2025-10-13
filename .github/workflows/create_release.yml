@@ -1,4 +1,4 @@
-name: Build and upload artifact
+name: Build and create a release on tag push to master
 
 on:
   push:
@@ -9,6 +9,11 @@ jobs:
   build:
     name: Run build
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
 
     steps:
       - name: Checkout
@@ -30,9 +35,26 @@ jobs:
           echo "name=$(jq -r .id manifest.json)" >> "$GITHUB_OUTPUT"
           echo "version=$(jq -r .version manifest.json)" >> "$GITHUB_OUTPUT"
 
-      - name: Upload build artifact
+      - id: upload-artifact
+        name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          if-no-files-found: error
           name: "${{ steps.package-metadata.outputs.name }}-v${{ steps.package-metadata.outputs.version }}"
+          if-no-files-found: error
           path: dist/zip/*
+
+      - name: Create attestations
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-name: "${{ steps.package-metadata.outputs.name }}-v${{ steps.package-metadata.outputs.version }}"
+          subject-digest: sha256:${{ steps.upload-artifact.outputs.artifact-digest }}
+
+      - name: Draft a new release
+        uses: softprops/action-gh-release@6da8fa9354ddfdc4aeace5fc48d7f679b5214090
+        if: github.ref_type == 'tag'
+        with:
+          draft: true
+          files: |
+            dist/*.zip
+            dist/main.js
+            dist/manifest.json
