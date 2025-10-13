@@ -3,6 +3,13 @@
 Dynamic, real-time updated Steam Guard code component right in your
 Obsidian notes!
 
+## 🤔 Why?
+
+You'll find this plugin extremely convenient if you have more than one
+Steam account and need to switch between them often, especially if
+you're a bot (e.g. automated trading) developer and keep a couple
+dozen of these codes in your vault.
+
 ## 🎞️ Demo
 
 | Hover-to-reveal                                  | Always revealed                                   |
@@ -44,3 +51,11 @@ However, be wary of the software (including other plugins) that can
 potentially access your Obsidian vault and steal your secret, as
 well as other people who may look at your device's screen and see
 the code.
+
+## 📜 Acknowledgements
+
+During the development, some inspiration (for various code parts)
+was drawn from the following plugins:
+
+- [Dataview](https://github.com/blacksmithgu/obsidian-dataview) &mdash;
+  live preview/source mode separation, inline code span replacement
