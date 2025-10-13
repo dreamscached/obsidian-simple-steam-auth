@@ -3,7 +3,7 @@
   "name": "Simple Steam Auth",
   "version": "1.0.0",
   "minAppVersion": "0.15.0",
-  "description": "Generate Steam Guard codes right in your Obsidian vault.",
+  "description": "Generate Steam Guard codes right in your vault.",
   "author": "dreamscached",
   "authorUrl": "https://github.com/dreamscached",
   "fundingUrl": "https://buymeacoffee.com/dreamscached",
