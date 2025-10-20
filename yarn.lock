@@ -2453,6 +2453,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"i18next-cli-plugin-svelte@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "i18next-cli-plugin-svelte@npm:1.0.1"
+  dependencies:
+    svelte: "npm:^5.41.0"
+  peerDependencies:
+    i18next-cli: ^1.11.11
+  checksum: 10c0/fd02524fd2225298bdf3a8775173d884a62a214ecc4c2b73de35f0d1ab9be97786fbbaa323e58df55e8ee32e49c2543d51d8616600a093ab3a6104c2e47869ae
+  languageName: node
+  linkType: hard
+
 "i18next-cli@npm:^1.11.9":
   version: 1.11.9
   resolution: "i18next-cli@npm:1.11.9"
@@ -3193,6 +3204,7 @@ __metadata:
     globals: "npm:^16.4.0"
     i18next: "npm:^25.6.0"
     i18next-cli: "npm:^1.11.9"
+    i18next-cli-plugin-svelte: "npm:^1.0.1"
     obsidian: "npm:^1.10.0"
     prettier: "npm:^3.6.2"
     prettier-plugin-svelte: "npm:^3.4.0"
@@ -3895,6 +3907,28 @@ __metadata:
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
   checksum: 10c0/761617791bb47cd71cc88aafc1c5ab8da8d35a229324faa557d9873bc4f51ef5e3912ddc29c147958c24e9eb4262e90b08b9bec6c12aa7ba3f99a97573486816
+  languageName: node
+  linkType: hard
+
+"svelte@npm:^5.41.0":
+  version: 5.41.0
+  resolution: "svelte@npm:5.41.0"
+  dependencies:
+    "@jridgewell/remapping": "npm:^2.3.4"
+    "@jridgewell/sourcemap-codec": "npm:^1.5.0"
+    "@sveltejs/acorn-typescript": "npm:^1.0.5"
+    "@types/estree": "npm:^1.0.5"
+    acorn: "npm:^8.12.1"
+    aria-query: "npm:^5.3.1"
+    axobject-query: "npm:^4.1.0"
+    clsx: "npm:^2.1.1"
+    esm-env: "npm:^1.2.1"
+    esrap: "npm:^2.1.0"
+    is-reference: "npm:^3.0.3"
+    locate-character: "npm:^3.0.0"
+    magic-string: "npm:^0.30.11"
+    zimmerframe: "npm:^1.1.2"
+  checksum: 10c0/f2727fc8a01fe8eec49c5c018a7fd1dad8d8f9773b229564ab951a2d9428a7cd27a925e8dcdfb1b1d724ca0d2dda1008a052967370bf0e975a66c4bbb15c7cb2
   languageName: node
   linkType: hard
 
