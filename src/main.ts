@@ -2,6 +2,7 @@ import { Plugin } from "obsidian";
 
 import { SteamGuardCodePlugin } from "$components/SteamGuardCode/SteamGuardCodePlugin.js";
 import { SteamGuardCodeMarkdownPostProcessor } from "$lib/common.js";
+import { initI18n } from "$lib/i18n.js";
 import { getSettings, setSettings } from "$lib/settings/settings.svelte.js";
 import { SimpleSteamAuthSettingsTab } from "$lib/settings/tab.js";
 import { defaultSettings } from "$lib/settings/types.js";
@@ -15,6 +16,7 @@ import { defaultSettings } from "$lib/settings/types.js";
  */
 export default class SimpleSteamAuthPlugin extends Plugin {
 	override async onload() {
+		await initI18n();
 		await this.loadSettings();
 		this.registerSettings();
 		this.registerSteamGuardCodeComponent();

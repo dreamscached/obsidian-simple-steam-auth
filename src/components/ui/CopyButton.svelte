@@ -6,6 +6,7 @@ Simple copy button, used to copy text content on click.
 <script lang="ts">
 	import { Notice } from "obsidian";
 	import Icon from "./Icon.svelte";
+	import i18n from "i18next";
 
 	interface Props {
 		/** Text content to copy. */
@@ -20,7 +21,7 @@ Simple copy button, used to copy text content on click.
 		if (text) {
 			await navigator.clipboard.writeText(text);
 			// TODO i18n
-			new Notice("Copied to your clipboard");
+			new Notice(i18n.t("component.copyButton.copy.notice"));
 		}
 	}
 </script>

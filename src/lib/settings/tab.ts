@@ -1,3 +1,4 @@
+import i18n from "i18next";
 import { App, PluginSettingTab, Setting } from "obsidian";
 
 import type SimpleSteamAuthPlugin from "../../main.js";
@@ -24,8 +25,8 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	private addShowCopyButton() {
 		// TODO i18n
 		new Setting(this.containerEl)
-			.setName("Show copy button")
-			.setDesc("Toggle display of copy button next to the Steam Guard code")
+			.setName(i18n.t("settings.general.showCopyButton.name")) // Show copy button
+			.setDesc(i18n.t("settings.general.showCopyButton.desc")) // Toggle display of copy button next to the Steam Guard code
 			.addToggle((toggle) =>
 				toggle.setValue(this.settings.showCopyButton).onChange(async (value) => {
 					this.settings.showCopyButton = value;
@@ -37,13 +38,16 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	private addShowCodeByDefault() {
 		// TODO i18n
 		new Setting(this.containerEl)
-			.setName("Show code by default")
+			.setName(i18n.t("settings.general.showCodeByDefault.name")) // Show code by default
 			.setDesc(
 				createFragment((descEl) => {
-					descEl.createDiv().innerHTML = `
-						Always show Steam Guard code, without having to click on it to reveal.<br>
-						<b>Warning!</b> This will lessen the security of your account.
-					`;
+					descEl.createDiv().innerHTML = i18n.t(
+						"settings.general.showCodeByDefault.descHtml"
+					);
+					// `
+					// 	Always show Steam Guard code, without having to click on it to reveal.<br>
+					// 	<b>Warning!</b> This will lessen the security of your account.
+					// `
 				})
 			)
 			.addToggle((toggle) =>
