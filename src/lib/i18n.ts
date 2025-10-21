@@ -10,7 +10,8 @@ export async function initI18n() {
 			/* eslint-disable @typescript-eslint/no-explicit-any */
 			"en": ((await import("$assets/i18n/en.json", { with: { type: "json" } })) as any).default,
 			"en-GB": ((await import("$assets/i18n/en-GB.json", { with: { type: "json" } })) as any).default,
-			"cs": ((await import("$assets/i18n/cs.json", { with: { type: "json" } })) as any).default
+			"cs": ((await import("$assets/i18n/cs.json", { with: { type: "json" } })) as any).default,
+			"ru": ((await import("$assets/i18n/ru.json", { with: { type: "json" } })) as any).default
 			/* eslint-enable @typescript-eslint/no-explicit-any */
 		}
 	});
