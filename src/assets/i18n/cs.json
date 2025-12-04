@@ -4,6 +4,8 @@
     "settings.general.showCopyButton.name": "Zobrazit tlačítko kopírování",
     "settings.general.showCopyButton.desc": "Přepnout zobrazení tlačítka pro kopírování vedle kódu Steam Guard",
     "settings.general.showCodeByDefault.name": "Zobrazit kód ve výchozím stavu",
-    "settings.general.showCodeByDefault.descHtml": "Vždy zobrazovat kód Steam Guard, aniž by bylo nutné na něj najet myší pro zobrazení.<br><b>Upozornění!</b> Toto sníží zabezpečení vašeho účtu."
+    "settings.general.showCodeByDefault.desc.span.0": "Vždy zobrazovat kód Steam Guard, aniž by bylo nutné na něj najet myší pro zobrazení.",
+    "settings.general.showCodeByDefault.desc.b.0": "Pozor! ",
+    "settings.general.showCodeByDefault.desc.span.1": "Toto sníží zabezpečení vašeho účtu."
   }
 }

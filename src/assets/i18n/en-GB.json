@@ -4,6 +4,8 @@
     "settings.general.showCopyButton.name": "Show copy button",
     "settings.general.showCopyButton.desc": "Toggle display of the copy button next to the Steam Guard code",
     "settings.general.showCodeByDefault.name": "Show code by default",
-    "settings.general.showCodeByDefault.descHtml": "Always show the Steam Guard code without having to hover over it to reveal.<br><b>Warning!</b> This will reduce the security of your account."
+    "settings.general.showCodeByDefault.desc.span.0": "Always show the Steam Guard code without having to hover over it to reveal.",
+    "settings.general.showCodeByDefault.desc.b.0": "Warning! ",
+    "settings.general.showCodeByDefault.desc.span.1": "This will reduce the security of your account."
   }
 }

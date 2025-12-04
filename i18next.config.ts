@@ -11,7 +11,5 @@ export default defineConfig({
 		sort: () => 0, // maintain order of occurrence
 		removeUnusedKeys: false
 	},
-	plugins: [
-		i18nextSveltePlugin
-	]
+	plugins: [i18nextSveltePlugin]
 });

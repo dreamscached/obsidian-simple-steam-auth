@@ -4,6 +4,8 @@
     "settings.general.showCopyButton.name": "Показать кнопку копирования",
     "settings.general.showCopyButton.desc": "Переключить отображение кнопки копирования рядом с кодом Steam Guard.",
     "settings.general.showCodeByDefault.name": "Всегда отображать код",
-    "settings.general.showCodeByDefault.descHtml": "Всегда отображать код Steam Guard без необходимости наводить курсор на него.<br><b>Внимание!</b> Это снизит безопасность вашего аккаунта."
+    "settings.general.showCodeByDefault.desc.span.0": "Всегда отображать код Steam Guard без необходимости наводить курсор на него.",
+    "settings.general.showCodeByDefault.desc.b.0": "Внимание! ",
+    "settings.general.showCodeByDefault.desc.span.1": "Это снизит безопасность вашего аккаунта."
   }
 }
