@@ -1,5 +1,8 @@
 # 🔑 Simple Steam Auth
 
+![Latest release](https://img.shields.io/github/v/release/dreamscached/obsidian-simple-steam-auth)
+![Download count](https://img.shields.io/github/downloads/dreamscached/obsidian-simple-steam-auth/main.js)
+
 Dynamic, real-time updated Steam Guard code component right in your
 Obsidian notes!
 
