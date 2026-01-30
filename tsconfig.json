@@ -8,7 +8,6 @@
     // Environment Settings
     "module": "nodenext",
     "target": "esnext",
-    "types": [],
 
     // Other Outputs
     "erasableSyntaxOnly": true,

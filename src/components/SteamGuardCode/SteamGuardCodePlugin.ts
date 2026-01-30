@@ -1,4 +1,4 @@
-import { EditorSelection, type Extension, Range, StateField } from "@codemirror/state";
+import { EditorSelection, type Extension, Range } from "@codemirror/state";
 import {
 	Decoration,
 	EditorView,
@@ -43,7 +43,9 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		if (!update.state.field(editorLivePreviewField as unknown as StateField<boolean>)) {
+		// todo: typing
+		// @ts-expect-error some quirk because this doesn't happen on ^6.5.4 of @codemirror/state
+		if (!update.state.field(editorLivePreviewField)) {
 			this.decorations = Decoration.none;
 			return;
 		}
@@ -89,6 +91,8 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const start = node.from;
 		const end = node.to;
 		const sel = view.state.selection;
+		// todo: typing
+		// @ts-expect-error typing quirk because this doesn't happen on ^6.38.6 of @codemirror/view
 		return !this.isSelectionOverlapsRanges(sel, start - 1, end + 1);
 	}
 
@@ -114,7 +118,9 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const from = node.from - 1;
 		const to = node.to + 1;
 		if (!this.hasDecoration(from, to)) {
-			const file = view.state.field(editorInfoField as unknown as StateField<unknown>);
+			// todo: typing
+			// @ts-expect-error typing quirk because this doesn't happen on ^6.38.6 of @codemirror/view
+			const file = view.state.field(editorInfoField);
 			if (!file) return;
 			const decoration = this.createDecoration(node, view)?.value;
 			if (decoration) {

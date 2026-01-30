@@ -55,7 +55,7 @@ export function getSteamGuardCodeAnchorsAst(view: EditorView): SyntaxNodeRef[] {
 				if (node.type.name === "inline-code") {
 					const text = view.state.doc.sliceString(node.from, node.to);
 					if (steamGuardCodeAnchorPattern.test(text)) {
-						nodes.push(node.node);
+						nodes.push(node.node as unknown as SyntaxNodeRef); // todo: typing
 					}
 				}
 			}
