@@ -1,64 +1,63 @@
 # 🔑 Simple Steam Auth
 
-![Latest release](https://img.shields.io/github/v/release/dreamscached/obsidian-simple-steam-auth)
-![Download count](https://img.shields.io/github/downloads/dreamscached/obsidian-simple-steam-auth/main.js)
+[![Workflow status](https://img.shields.io/github/actions/workflow/status/dreamscached/obsidian-simple-steam-auth/check_on_push.yml?branch=master)](https://github.com/dreamscached/obsidian-simple-steam-auth/actions/workflows/check_on_push.yml)
+[![Latest release](https://img.shields.io/github/v/release/dreamscached/obsidian-simple-steam-auth)](https://github.com/dreamscached/obsidian-simple-steam-auth/releases/latest)
+[![GitHub downloads](https://img.shields.io/github/downloads/dreamscached/obsidian-simple-steam-auth/main.js?displayAssetName=false&logo=obsidian)](https://obsidian.md/plugins?id=simple-steam-auth)
+[![GitHub license](https://img.shields.io/github/license/dreamscached/obsidian-simple-steam-auth)](https://github.com/dreamscached/obsidian-simple-steam-auth/blob/master/LICENSE)
 
-Dynamic, real-time updated Steam Guard code component right in your
-Obsidian notes!
+A dynamic, real-time Steam Guard code component directly in your Obsidian notes!
 
 ## 🤔 Why?
 
-You'll find this plugin extremely convenient if you have more than one
-Steam account and need to switch between them often, especially if
-you're a bot (e.g. automated trading) developer and keep a couple
-dozen of these codes in your vault.
+This plugin is extremely convenient if you use multiple Steam accounts and need to
+switch between them frequently. It is especially useful for bot developers (e.g., automated trading)
+who manage dozens of accounts within their vault.
 
 ## 🎞️ Demo
 
-| Hover-to-reveal                                  | Always revealed                                   |
-| ------------------------------------------------ | ------------------------------------------------- |
+| Hover to reveal                                  | Always revealed (unsafe)                          |
+|--------------------------------------------------|---------------------------------------------------|
 | ![Hover-reveal demo](docs/screenshots/demo2.gif) | ![Revealed code demo](docs/screenshots/demo1.png) |
 
 ## 📦 How to install
 
-### 🐈‍⬛ From Github
-
-1. Go to [latest release page](https://github.com/dreamscached/obsidian-simple-steam-auth/releases/latest)
-2. Scroll to the bottom and download the `simple-steam-auth-v1.x.x.zip` package
-3. Unpack the `simple-steam-auth` folder from the package into `<vault folder>/.obsidian/plugins`
-4. Enable Simple Steam Auth in Community plugins settings tab
+This plugin is available in the Obsidian Community plugin list. Click [here](https://obsidian.md/plugins?id=simple-steam-auth)
+to quickly install it directly within your Obsidian app.
 
 ## 📓 How to use
 
 > [!NOTE]
-> You are expected to be familiar with where to obtain the _shared_
-> secret for your Steam account. If not &mdash; see [this](https://gist.github.com/mathielo/8367e464baa73941a075bae4dd5eed90)
-> extensive guide.
+> You are expected to know how to obtain the **shared secret** for your Steam account. If you don't,
+> please refer to [this extensive guide](https://gist.github.com/mathielo/8367e464baa73941a075bae4dd5eed90).
 
-After installing this plugin, simply create an _inline_ code block
-with the following content inside the backticks:
+After installing the plugin, simply create an **inline** code block with the following content inside
+the backticks:
 
 ```
 ::steam-guard-code::YOUR_SHARED_SECRET_HERE
 ```
 
-That's it, now you have a quick access to your Steam Guard code.
+That's it! You now have quick access to your Steam Guard codes.
 
-## 🔒 Security considerations
+## 🔒 Security Considerations
 
-Steam Guard codes are always generated locally, using the
-cryptographic secret you've provided. Neither this secret nor the
-generated code ever leaves your device.
+Steam Guard codes are generated locally using the cryptographic secret you provide. Neither the secret nor
+the generated codes ever leave your device.
 
-However, be wary of the software (including other plugins) that can
-potentially access your Obsidian vault and steal your secret, as
-well as other people who may look at your device's screen and see
-the code.
+However, be wary of other software (including other plugins) that could potentially access your Obsidian
+vault to steal your secret. You should also be mindful of anyone who might see your screen while a code
+is visible.
 
 ## 📜 Acknowledgements
 
-During the development, some inspiration (for various code parts)
-was drawn from the following plugins:
+During development, inspiration for various components was drawn from:
 
-- [Dataview](https://github.com/blacksmithgu/obsidian-dataview) &mdash;
-  live preview/source mode separation, inline code span replacement
+- [Dataview](https://github.com/blacksmithgu/obsidian-dataview) &mdash; Live Preview/Source mode
+  separation and inline code span replacement
+- [Steam TOTP](https://github.com/DoctorMcKay/node-steam-totp) &mdash; this plugin uses a version of
+  the `steam-totp` npm library adapted for the browser JS environment
+  ([patch](.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch))
+
+## ⚖️ License
+
+This plugin is licensed under the GNU GPLv3 license.
