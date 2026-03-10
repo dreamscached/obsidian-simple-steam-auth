@@ -1,6 +1,5 @@
 {
   "translation": {
-    "component.copyButton.copy.notice": "Copied to your clipboard",
     "settings.general.showCopyButton.name": "Show copy button",
     "settings.general.showCopyButton.desc": "Toggle the display of the copy button next to the Steam Guard code.",
     "settings.general.showCodeByDefault.name": "Show code by default",
