@@ -18,7 +18,8 @@
 	let { sharedSecret }: Props = $props();
 	let authCode = $state<string | undefined>();
 	let error = $state<unknown | undefined>();
-	let reveal = $state(false);
+	let hovered = $state(false);
+	let revealed = $derived(hovered || pluginSettings.showCodeByDefault);
 
 	async function updateAuthCode() {
 		try {
@@ -33,14 +34,6 @@
 		pluginInstance.events.on("refresh", updateAuthCode);
 		await updateAuthCode();
 	});
-
-	function setCodeRevealed(value: boolean) {
-		if (value) {
-			reveal = true;
-		} else if (!pluginSettings.showCodeByDefault) {
-			reveal = false;
-		}
-	}
 </script>
 
 <div class="sg-container">
@@ -58,13 +51,13 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<span
-		class={["sg-totp-code", { "sg-totp-code-hidden": !reveal }]}
-		onfocus={() => setCodeRevealed(true)}
-		onblur={() => setCodeRevealed(false)}
-		onmouseover={() => setCodeRevealed(true)}
-		onmouseleave={() => setCodeRevealed(false)}
+		class={["sg-totp-code", { "sg-totp-code-hidden": !revealed }]}
+		onfocus={() => (hovered = true)}
+		onblur={() => (hovered = false)}
+		onmouseover={() => (hovered = true)}
+		onmouseleave={() => (hovered = false)}
 	>
-		{#if reveal || pluginSettings.showCodeByDefault}
+		{#if revealed}
 			{authCode}
 		{:else}
 			*****
