@@ -1,11 +1,14 @@
 <script lang="ts">
-	import { onDestroy, onMount } from "svelte";
+	import { getContext, onMount } from "svelte";
 	import SteamTotp from "steam-totp";
 
 	import { getSettings } from "$lib/settings/settings.svelte";
 	import CopyButton from "$components/ui/CopyButton.svelte";
+	import { PLUGIN_CONTEXT } from "$lib/component";
+	import SimpleSteamAuthPlugin from "../../main.js";
 
-	type IntervalRef = ReturnType<typeof setInterval>;
+	const pluginInstance = getContext<SimpleSteamAuthPlugin>(PLUGIN_CONTEXT);
+	const pluginSettings = getSettings();
 
 	interface Props {
 		/** Shared secret used to generate Steam Guard code. */
@@ -13,12 +16,10 @@
 	}
 
 	let { sharedSecret }: Props = $props();
-
-	let pluginSettings = getSettings();
-	let updateInterval = $state<IntervalRef | undefined>();
 	let authCode = $state<string | undefined>();
 	let error = $state<unknown | undefined>();
-	let reveal = $state(false);
+	let hovered = $state(false);
+	let revealed = $derived(hovered || pluginSettings.showCodeByDefault);
 
 	async function updateAuthCode() {
 		try {
@@ -30,21 +31,9 @@
 	}
 
 	onMount(async () => {
-		updateInterval = setInterval(updateAuthCode, 1e3);
+		pluginInstance.events.on("refresh", updateAuthCode);
 		await updateAuthCode();
 	});
-
-	onDestroy(() => {
-		clearInterval(updateInterval);
-	});
-
-	function setCodeRevealed(value: boolean) {
-		if (value) {
-			reveal = true;
-		} else if (!pluginSettings.showCodeByDefault) {
-			reveal = false;
-		}
-	}
 </script>
 
 <div class="sg-container">
@@ -62,13 +51,13 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
 	<span
-		class={["sg-totp-code", { "sg-totp-code-hidden": !reveal }]}
-		onfocus={() => setCodeRevealed(true)}
-		onblur={() => setCodeRevealed(false)}
-		onmouseover={() => setCodeRevealed(true)}
-		onmouseleave={() => setCodeRevealed(false)}
+		class={["sg-totp-code", { "sg-totp-code-hidden": !revealed }]}
+		onfocus={() => (hovered = true)}
+		onblur={() => (hovered = false)}
+		onmouseover={() => (hovered = true)}
+		onmouseleave={() => (hovered = false)}
 	>
-		{#if reveal || pluginSettings.showCodeByDefault}
+		{#if revealed}
 			{authCode}
 		{:else}
 			*****

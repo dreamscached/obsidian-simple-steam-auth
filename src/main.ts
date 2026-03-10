@@ -1,7 +1,7 @@
-import { Plugin } from "obsidian";
+import { Events, Plugin } from "obsidian";
 
 import { SteamGuardCodePlugin } from "$components/SteamGuardCode/SteamGuardCodePlugin.js";
-import { SteamGuardCodeMarkdownPostProcessor } from "$lib/common.js";
+import { createMarkdownPostProcessor } from "$lib/common.js";
 import { initI18n } from "$lib/i18n.js";
 import { getSettings, setSettings } from "$lib/settings/settings.svelte.js";
 import { SimpleSteamAuthSettingsTab } from "$lib/settings/tab.js";
@@ -15,11 +15,15 @@ import { defaultSettings } from "$lib/settings/types.js";
  * @author dreamscached
  */
 export default class SimpleSteamAuthPlugin extends Plugin {
+	/** Event emitter. */
+	public events = new Events();
+
 	override async onload() {
 		await initI18n();
 		await this.loadSettings();
 		this.registerSettings();
 		this.registerSteamGuardCodeComponent();
+		this.registerRefreshTimer();
 	}
 
 	async loadSettings() {
@@ -38,6 +42,10 @@ export default class SimpleSteamAuthPlugin extends Plugin {
 
 	private registerSteamGuardCodeComponent() {
 		this.registerEditorExtension(SteamGuardCodePlugin.createViewPlugin());
-		this.registerMarkdownPostProcessor(SteamGuardCodeMarkdownPostProcessor);
+		this.registerMarkdownPostProcessor(createMarkdownPostProcessor(this));
+	}
+
+	private registerRefreshTimer() {
+		this.registerInterval(window.setInterval(() => this.events.trigger("refresh"), 30e3));
 	}
 }

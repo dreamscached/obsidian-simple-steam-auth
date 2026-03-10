@@ -1,6 +1,5 @@
 {
   "translation": {
-    "component.copyButton.copy.notice": "Скопировано в буфер обмена",
     "settings.general.showCopyButton.name": "Показать кнопку копирования",
     "settings.general.showCopyButton.desc": "Переключить отображение кнопки копирования рядом с кодом Steam Guard.",
     "settings.general.showCodeByDefault.name": "Всегда отображать код",

@@ -6,7 +6,10 @@ Simple copy button, used to copy text content on click.
 <script lang="ts">
 	import { Notice } from "obsidian";
 	import Icon from "./Icon.svelte";
-	import i18n from "i18next";
+
+	// i18next is available globally from Obsidian itself for builtin translations
+	import { type i18n as i18nextType } from "i18next";
+	const obsidianI18n = (window as any).i18next as i18nextType;
 
 	interface Props {
 		/** Text content to copy. */
@@ -20,8 +23,7 @@ Simple copy button, used to copy text content on click.
 	async function onclick() {
 		if (text) {
 			await navigator.clipboard.writeText(text);
-			// TODO i18n
-			new Notice(i18n.t("component.copyButton.copy.notice"));
+			new Notice(obsidianI18n.t("interface.copied_generic"));
 		}
 	}
 </script>
