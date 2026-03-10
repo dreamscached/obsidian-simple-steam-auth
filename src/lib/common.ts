@@ -6,6 +6,8 @@ import type { MarkdownPostProcessorContext } from "obsidian";
 import SteamGuardCode from "$components/SteamGuardCode/SteamGuardCode.svelte";
 import { MarkdownRenderComponent } from "$lib/component.js";
 
+import type SimpleSteamAuthPlugin from "../main.js";
+
 /** Pattern of a `::steam-guard-code::<SHARED SECRET>` anchor. */
 const steamGuardCodeAnchorPattern = /^::steam-guard-code::(.+)$/;
 
@@ -66,26 +68,24 @@ export function getSteamGuardCodeAnchorsAst(view: EditorView): SyntaxNodeRef[] {
 }
 
 /**
- * Markdown post-processing function to include {@link SteamGuardCode}
+ * Creates markdown post-processing function to include {@link SteamGuardCode}
  * component in place of anchor inline spans.
- * @param el {@link HTMLElement} to search for anchor elements in
- * @param ctx post processing context
+ * @param plugin Simple Steam Auth plugin
  */
-export function SteamGuardCodeMarkdownPostProcessor(
-	el: HTMLElement,
-	ctx: MarkdownPostProcessorContext
-) {
-	getSteamGuardCodeAnchorsDom(el).forEach((it) => {
-		const sharedSecret = getSteamGuardCodeSharedSecret(it.textContent);
-		const anchor = document.createElement("span");
-		it.replaceWith(anchor);
-		ctx.addChild(
-			new MarkdownRenderComponent(SteamGuardCode, {
-				target: anchor,
-				props: {
-					sharedSecret
-				}
-			})
-		);
-	});
+export function createMarkdownPostProcessor(plugin: SimpleSteamAuthPlugin) {
+	return (el: HTMLElement, ctx: MarkdownPostProcessorContext) => {
+		getSteamGuardCodeAnchorsDom(el).forEach((it) => {
+			const sharedSecret = getSteamGuardCodeSharedSecret(it.textContent);
+			const anchor = document.createElement("span");
+			it.replaceWith(anchor);
+			ctx.addChild(
+				new MarkdownRenderComponent(plugin, SteamGuardCode, {
+					target: anchor,
+					props: {
+						sharedSecret
+					}
+				})
+			);
+		});
+	};
 }
