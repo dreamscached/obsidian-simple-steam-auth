@@ -16,7 +16,7 @@ who manage dozens of accounts within their vault.
 ## 🎞️ Demo
 
 | Hover to reveal                                  | Always revealed (unsafe)                          |
-|--------------------------------------------------|---------------------------------------------------|
+| ------------------------------------------------ | ------------------------------------------------- |
 | ![Hover-reveal demo](docs/screenshots/demo2.gif) | ![Revealed code demo](docs/screenshots/demo1.png) |
 
 ## 📦 How to install
@@ -41,6 +41,12 @@ That's it! You now have quick access to your Steam Guard codes.
 
 ## 🔒 Security Considerations
 
+> [!CAUTION]
+> Steam Guard, via the official Steam mobile app, is the only two-factor
+> authentication application officially endorsed by Valve Corporation. This
+> plugin is a third-party implementation and should be used at your own
+> discretion.
+
 Steam Guard codes are generated locally using the cryptographic secret you provide. Neither the secret nor
 the generated codes ever leave your device.
 
@@ -61,3 +67,8 @@ During development, inspiration for various components was drawn from:
 ## ⚖️ License
 
 This plugin is licensed under the GNU GPLv3 license.
+
+Steam, the Steam logo, Valve, and the Valve logo are trademarks and/or
+registered trademarks of Valve Corporation. All other trademarks are
+property of their respective owners. This project is not affiliated with,
+sponsored by, or endorsed by Valve Corporation.
