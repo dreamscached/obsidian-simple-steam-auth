@@ -29,6 +29,8 @@ import { editorInfoField, editorLivePreviewField } from "obsidian";
 
 import { getSteamGuardCodeAnchorsAst, getSteamGuardCodeSharedSecret } from "$lib/common.js";
 
+import type SimpleSteamAuthPlugin from "../../main.js";
+
 import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
 
 /**
@@ -36,21 +38,24 @@ import { SteamGuardCodeWidget } from "./SteamGuardCodeWidget.js";
  * {@link SteamGuardCodeWidget} onto the Markdown editor.
  */
 export class SteamGuardCodePlugin implements PluginValue {
+	private readonly plugin: SimpleSteamAuthPlugin;
 	private decorations: DecorationSet;
 
-	private constructor(view: EditorView) {
+	private constructor(plugin: SimpleSteamAuthPlugin, view: EditorView) {
+		this.plugin = plugin;
 		this.decorations = this.renderDecorations(view);
 	}
 
 	/**
 	 * Creates a ViewPlugin instance wrapping this class.
+	 * @param plugin Simple Steam Auth plugin
 	 * @returns CodeMirror {@link ViewPlugin} instance wrapping this class
 	 */
-	static createViewPlugin(): Extension {
+	static createViewPlugin(plugin: SimpleSteamAuthPlugin): Extension {
 		return ViewPlugin.fromClass(
 			class extends SteamGuardCodePlugin {
 				constructor(view: EditorView) {
-					super(view);
+					super(plugin, view);
 				}
 			},
 			{
@@ -125,7 +130,7 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const sharedSecret = getSteamGuardCodeSharedSecret(text);
 
 		return Decoration.replace({
-			widget: new SteamGuardCodeWidget({ sharedSecret }),
+			widget: new SteamGuardCodeWidget(this.plugin, { sharedSecret }),
 			inclusive: false,
 			block: false
 		}).range(start - 1, end + 1);
