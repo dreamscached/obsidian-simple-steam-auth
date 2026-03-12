@@ -20,6 +20,10 @@ import { mount, unmount, type ComponentProps } from "svelte";
 import { WidgetType } from "@codemirror/view";
 import deepEqual from "deep-equal";
 
+import { PLUGIN_CONTEXT } from "$lib/component.js";
+
+import type SimpleSteamAuthPlugin from "../../main.js";
+
 import SteamGuardCode from "./SteamGuardCode.svelte";
 
 /**
@@ -27,15 +31,18 @@ import SteamGuardCode from "./SteamGuardCode.svelte";
  * Svelte component onto the Markdown editor.
  */
 export class SteamGuardCodeWidget extends WidgetType {
+	private readonly plugin: SimpleSteamAuthPlugin;
 	private readonly props: ComponentProps<typeof SteamGuardCode>;
 	private instance?: ReturnType<typeof mount>;
 
 	/**
 	 * Create a new instance of {@link SteamGuardCodeWidget} class.
+	 * @param plugin Simple Steam Auth plugin
 	 * @param props props to pass to {@link SteamGuardCode} component
 	 */
-	constructor(props: ComponentProps<typeof SteamGuardCode>) {
+	constructor(plugin: SimpleSteamAuthPlugin, props: ComponentProps<typeof SteamGuardCode>) {
 		super();
+		this.plugin = plugin;
 		this.props = props;
 	}
 
@@ -49,7 +56,8 @@ export class SteamGuardCodeWidget extends WidgetType {
 
 		this.instance = mount(SteamGuardCode, {
 			target: span,
-			props: this.props
+			props: this.props,
+			context: new Map([[PLUGIN_CONTEXT, this.plugin]])
 		});
 
 		return span;
