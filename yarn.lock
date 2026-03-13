@@ -2418,13 +2418,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"i18next-cli-plugin-svelte@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "i18next-cli-plugin-svelte@npm:1.0.3"
+"i18next-cli-plugin-svelte@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "i18next-cli-plugin-svelte@npm:1.0.4"
   peerDependencies:
-    i18next-cli: ^1.11.11
-    svelte: ^5.41.0
-  checksum: 10c0/d329c86dcfb0772d7f66cb0587c39bb93678e32b714967a467e70ec44650b369cf870010d63c27a0ab8733353acdb94d6dc69137d77ddcef63e18e80f1c03308
+    i18next-cli: ^1.50.0
+    svelte: ^5.53.11
+  checksum: 10c0/e7ca8ff3d426e4e31f8e967bbb37720a9c0f2190927bd8b489ac64db008a8c4948e4bcc4b3765a2a826a67284385c124777fa02e599bc845aeec4f3bbcbb3245
   languageName: node
   linkType: hard
 
@@ -3127,7 +3127,7 @@ __metadata:
     globals: "npm:^17.4.0"
     i18next: "npm:^25.8.18"
     i18next-cli: "npm:^1.50.0"
-    i18next-cli-plugin-svelte: "npm:^1.0.3"
+    i18next-cli-plugin-svelte: "npm:^1.0.4"
     obsidian: "npm:^1.12.3"
     prettier: "npm:^3.8.1"
     prettier-plugin-svelte: "npm:^3.5.1"
