@@ -29,7 +29,7 @@ export async function initI18n() {
 			"en-GB": ((await import("$assets/i18n/en-GB.json", { with: { type: "json" } })) as any).default,
 			"cs": ((await import("$assets/i18n/cs.json", { with: { type: "json" } })) as any).default,
 			"ru": ((await import("$assets/i18n/ru.json", { with: { type: "json" } })) as any).default,
-			"de": ((await import("$assets/i18n/de.json", { with: { type: "json" } })) as any).default,
+			"de": ((await import("$assets/i18n/de.json", { with: { type: "json" } })) as any).default
 			/* eslint-enable @typescript-eslint/no-explicit-any */
 		}
 	});

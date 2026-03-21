@@ -2,7 +2,7 @@ import { defineConfig } from "i18next-cli";
 import i18nextSveltePlugin from "i18next-cli-plugin-svelte";
 
 export default defineConfig({
-	locales: ["en", "cs", "en-GB", "ru"],
+	locales: ["en", "cs", "en-GB", "ru", "de"],
 	extract: {
 		input: "src/**/*.{ts,svelte}",
 		output: "src/assets/i18n/{{language}}.json",
