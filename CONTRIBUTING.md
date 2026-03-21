@@ -16,6 +16,13 @@ git clone git@github.com:dreamscached/obsidian-simple-steam-auth
 yarn install
 ```
 
+## Submitting a pull request
+
+Before preparing a new pull request, please note that all of our changes first appear on
+the `dev` branch before they are merged into `master` for a new release. With that in mind,
+ensure you start your work by branching off the `dev` branch. When submitting your
+pull request, make sure to set the target branch to `dev`. Thank you! 🫶
+
 ## Adding translations
 
 We welcome translation contributions! This section will guide you through the process.
