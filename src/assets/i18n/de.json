@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "settings.general.showCopyButton.name": "Kopierschaltfläche anzeigen",
+    "settings.general.showCopyButton.desc": "Die Anzeige der Kopierschaltfläche neben dem Steam Guard-Code umschalten.",
+    "settings.general.showCodeByDefault.name": "Standardmäßig Code anzeigen",
+    "settings.general.showCodeByDefault.desc.span.0": "Der Steam Guard-Code wird immer angezeigt, ohne dass man mit der Maus darüberfahren muss, um ihn anzuzeigen.",
+    "settings.general.showCodeByDefault.desc.b.0": "Warnung! ",
+    "settings.general.showCodeByDefault.desc.span.1": "Dies verringert die Sicherheit Ihres Kontos."
+  }
+}
