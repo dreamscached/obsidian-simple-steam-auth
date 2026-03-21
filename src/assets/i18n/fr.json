@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "settings.general.showCopyButton.name": "Afficher le bouton de copie",
+    "settings.general.showCopyButton.desc": "Activer/désactiver l'affichage du bouton de copie à côté du code Steam Guard.",
+    "settings.general.showCodeByDefault.name": "Afficher le code par défaut",
+    "settings.general.showCodeByDefault.desc.span.0": "Afficher systématiquement le code Steam Guard sans avoir à le survoler pour le révéler.",
+    "settings.general.showCodeByDefault.desc.b.0": "Avertissement! ",
+    "settings.general.showCodeByDefault.desc.span.1": "Cela réduira la sécurité de votre compte."
+  }
+}
