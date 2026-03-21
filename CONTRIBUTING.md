@@ -40,9 +40,9 @@ Let's suppose you want to add a German translation:
 4. Open the [`src/lib/i18n.ts`](src/lib/i18n.ts) file, find the `resources` map, and add the
    entry for your language like this:
 
-   ```ts
-   "de": ((await import("$assets/i18n/de.json", { with: { type: "json" } })) as any).default
-   ```
+    ```ts
+    "de": ((await import("$assets/i18n/de.json", { with: { type: "json" } })) as any).default
+    ```
 
 5. (This is optional, but it will save us a few minutes! 🫶) <br>
    Open [`i18next.config.ts`](i18next.config.ts) and add your language code (corresponding to
