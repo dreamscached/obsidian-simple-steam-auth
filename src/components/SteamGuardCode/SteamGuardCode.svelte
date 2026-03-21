@@ -26,7 +26,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 	import SimpleSteamAuthPlugin from "../../main.js";
 
 	const pluginInstance = getContext<SimpleSteamAuthPlugin>(PLUGIN_CONTEXT);
-	console.log(pluginInstance);
 	const pluginSettings = getSettings();
 
 	interface Props {
