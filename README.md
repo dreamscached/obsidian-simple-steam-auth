@@ -54,6 +54,10 @@ However, be wary of other software (including other plugins) that could potentia
 vault to steal your secret. You should also be mindful of anyone who might see your screen while a code
 is visible.
 
+## 🙌 How to contribute
+
+We welcome contributions! See [`CONTRIBUTING.md`](CONTRIBUTING.md) to learn how you can help us.
+
 ## 📜 Acknowledgements
 
 During development, inspiration for various components was drawn from:
