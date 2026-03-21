@@ -14,14 +14,6 @@ export default defineConfig(
 			globals: globals.browser
 		}
 	},
-	{
-		files: ["./scripts/**/*.js"],
-		languageOptions: {
-			sourceType: "module",
-			ecmaVersion: "latest",
-			globals: globals.node
-		}
-	},
 	eslint.configs.recommended,
 	tseslint.configs.recommended
 );
