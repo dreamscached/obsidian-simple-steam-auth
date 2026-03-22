@@ -62,7 +62,8 @@ ensure no tampering occurs between the commit and the final .js file production.
 
 The original [`steam-totp`](https://github.com/DoctorMcKay/node-steam-totp) implementation has been
 [patched](.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch) with *minimal* changes, solely to port Node-specific
-logic to the Obsidian browser JS environment.
+logic to the Obsidian browser JS environment with added [`buffer@6.0.3`](https://www.npmjs.com/package/buffer/v/6.0.3)
+dependency.
 
 ## 🙌 How to contribute
 
