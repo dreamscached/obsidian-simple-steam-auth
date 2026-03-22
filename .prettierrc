@@ -9,7 +9,7 @@
 	"tabWidth": 4,
 	"trailingComma": "none",
 	"useTabs": true,
-	"plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-svelte"],
+	"plugins": ["prettier-plugin-svelte", "@trivago/prettier-plugin-sort-imports"],
 	"importOrder": [
 		"^node:",
 		"^@?esbuild-?",

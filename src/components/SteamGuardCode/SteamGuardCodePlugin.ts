@@ -16,14 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { EditorSelection, type Extension, Range } from "@codemirror/state";
-import {
-	Decoration,
-	EditorView,
-	ViewPlugin,
-	type DecorationSet,
-	type PluginValue,
-	type ViewUpdate
-} from "@codemirror/view";
+import { Decoration, EditorView, ViewPlugin } from "@codemirror/view";
+import type { DecorationSet, PluginValue, ViewUpdate } from "@codemirror/view";
 import type { SyntaxNodeRef } from "@lezer/common";
 import { editorInfoField, editorLivePreviewField } from "obsidian";
 

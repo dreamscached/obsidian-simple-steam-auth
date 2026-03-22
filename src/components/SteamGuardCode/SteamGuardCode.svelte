@@ -18,11 +18,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 <script lang="ts">
 	import { getContext, onMount } from "svelte";
+
 	import SteamTotp from "steam-totp";
 
-	import { getSettings } from "$lib/settings/settings.svelte";
 	import CopyButton from "$components/ui/CopyButton.svelte";
 	import { PLUGIN_CONTEXT } from "$lib/component";
+	import { getSettings } from "$lib/settings/settings.svelte";
+
 	import SimpleSteamAuthPlugin from "../../main.js";
 
 	const pluginInstance = getContext<SimpleSteamAuthPlugin>(PLUGIN_CONTEXT);

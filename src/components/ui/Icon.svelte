@@ -22,8 +22,9 @@ Simple component to include Lucide (Obsidian builtin) icons.
 -->
 
 <script lang="ts">
-	import { setIcon } from "obsidian";
 	import { onMount } from "svelte";
+
+	import { setIcon } from "obsidian";
 
 	interface Props {
 		/**
