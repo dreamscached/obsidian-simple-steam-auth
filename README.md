@@ -56,7 +56,9 @@ is visible.
 
 ## 🙌 How to contribute
 
-We welcome contributions! See [`CONTRIBUTING.md`](CONTRIBUTING.md) to learn how you can help us.
+We welcome contributions! See
+[`CONTRIBUTING.md`](https://github.com/dreamscached/obsidian-simple-steam-auth?tab=contributing-ov-file#how-to-contribute)
+to learn how you can help us.
 
 ## 📜 Acknowledgements
 
