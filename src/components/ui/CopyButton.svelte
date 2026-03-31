@@ -22,11 +22,12 @@ Simple copy button, used to copy text content on click.
 -->
 
 <script lang="ts">
-	import { Notice } from "obsidian";
-	import Icon from "./Icon.svelte";
-
 	// i18next is available globally from Obsidian itself for builtin translations
 	import { type i18n as i18nextType } from "i18next";
+	import { Notice } from "obsidian";
+
+	import Icon from "./Icon.svelte";
+
 	const obsidianI18n = (window as any).i18next as i18nextType;
 
 	interface Props {

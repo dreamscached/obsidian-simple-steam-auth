@@ -33,7 +33,8 @@ Let's suppose you want to add a German translation:
 
 2. Copy the `en.json` file (our baseline English translation) to a new file named `de.json`,
    where `de` is the 2-letter language code (note: you may need a specifier like `en-US` for
-   specific language dialects/variants).
+   specific language dialects/variants), you can find the list of supported language codes
+   [here](https://github.com/obsidianmd/obsidian-translations#existing-languages).
 
 3. Open your `de.json` file and translate the strings into your language.
 

@@ -33,7 +33,7 @@ import { defaultSettings } from "$lib/settings/types.js";
  */
 export default class SimpleSteamAuthPlugin extends Plugin {
 	/** Event emitter. */
-	public events = new Events();
+	public readonly events = new Events();
 
 	override async onload() {
 		await initI18n();

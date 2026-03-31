@@ -16,14 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import { EditorSelection, type Extension, Range } from "@codemirror/state";
-import {
-	Decoration,
-	EditorView,
-	ViewPlugin,
-	type DecorationSet,
-	type PluginValue,
-	type ViewUpdate
-} from "@codemirror/view";
+import { Decoration, EditorView, ViewPlugin } from "@codemirror/view";
+import type { DecorationSet, PluginValue, ViewUpdate } from "@codemirror/view";
 import type { SyntaxNodeRef } from "@lezer/common";
 import { editorInfoField, editorLivePreviewField } from "obsidian";
 
@@ -65,7 +59,6 @@ export class SteamGuardCodePlugin implements PluginValue {
 	}
 
 	update(update: ViewUpdate): void {
-		// todo: typing
 		// @ts-expect-error some quirk because this doesn't happen on ^6.5.4 of @codemirror/state
 		if (!update.state.field(editorLivePreviewField)) {
 			this.decorations = Decoration.none;
@@ -113,7 +106,6 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const start = node.from;
 		const end = node.to;
 		const sel = view.state.selection;
-		// todo: typing
 		// @ts-expect-error typing quirk because this doesn't happen on ^6.38.6 of @codemirror/view
 		return !this.isSelectionOverlapsRanges(sel, start - 1, end + 1);
 	}
@@ -140,7 +132,6 @@ export class SteamGuardCodePlugin implements PluginValue {
 		const from = node.from - 1;
 		const to = node.to + 1;
 		if (!this.hasDecoration(from, to)) {
-			// todo: typing
 			// @ts-expect-error typing quirk because this doesn't happen on ^6.38.6 of @codemirror/view
 			const file = view.state.field(editorInfoField);
 			if (!file) return;
