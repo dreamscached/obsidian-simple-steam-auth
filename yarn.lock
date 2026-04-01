@@ -1203,7 +1203,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/estree@npm:*, @types/estree@npm:^1.0.5, @types/estree@npm:^1.0.6, @types/estree@npm:^1.0.8":
+"@types/estree@npm:*, @types/estree@npm:^1.0.0, @types/estree@npm:^1.0.5, @types/estree@npm:^1.0.6, @types/estree@npm:^1.0.8":
   version: 1.0.8
   resolution: "@types/estree@npm:1.0.8"
   checksum: 10c0/39d34d1afaa338ab9763f37ad6066e3f349444f9052b9676a7cc0252ef9485a41c6d81c9c4e0d26e9077993354edf25efc853f3224dd4b447175ef62bdcc86a5
@@ -2197,6 +2197,15 @@ __metadata:
   version: 5.3.0
   resolution: "estraverse@npm:5.3.0"
   checksum: 10c0/1ff9447b96263dec95d6d67431c5e0771eb9776427421260a3e2f0fdd5d6bd4f8e37a7338f5ad2880c9f143450c9b1e4fc2069060724570a49cf9cf0312bd107
+  languageName: node
+  linkType: hard
+
+"estree-walker@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "estree-walker@npm:3.0.3"
+  dependencies:
+    "@types/estree": "npm:^1.0.0"
+  checksum: 10c0/c12e3c2b2642d2bcae7d5aa495c60fa2f299160946535763969a1c83fc74518ffa9c2cd3a8b69ac56aea547df6a8aac25f729a342992ef0bbac5f1c73e78995d
   languageName: node
   linkType: hard
 
@@ -3269,6 +3278,7 @@ __metadata:
     esbuild: "npm:^0.27.4"
     esbuild-svelte: "npm:^0.9.4"
     eslint: "npm:^10.1.0"
+    estree-walker: "npm:^3.0.3"
     globals: "npm:^17.4.0"
     i18next: "npm:^26.0.3"
     i18next-cli: "npm:^1.51.5"
@@ -3282,6 +3292,8 @@ __metadata:
     svelte-preprocess: "npm:^6.0.3"
     typescript: "npm:^5.9.3"
     typescript-eslint: "npm:^8.58.0"
+  peerDependencies:
+    estree-walker: ^3.0.3
   languageName: unknown
   linkType: soft
 

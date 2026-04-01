@@ -29,6 +29,7 @@
     "esbuild": "^0.27.4",
     "esbuild-svelte": "^0.9.4",
     "eslint": "^10.1.0",
+    "estree-walker": "^3.0.3",
     "globals": "^17.4.0",
     "i18next": "^26.0.3",
     "i18next-cli": "^1.51.5",
@@ -42,5 +43,8 @@
     "svelte-preprocess": "^6.0.3",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.0"
+  },
+  "peerDependencies": {
+    "estree-walker": "^3.0.3"
   }
 }
