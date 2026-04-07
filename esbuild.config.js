@@ -8,10 +8,10 @@ import builtins from "builtin-modules";
 import process from "process";
 
 const banner = `/*
-Thank you for using Simple Steam Auth! You're currently viewing a generated
-bundled .js file. Feel free to view (and contribute to) the source code at
-our Github repository: https://github.com/dreamscached/obsidian-simple-steam-auth
-*/
+ * Thank you for using Simple Steam Auth! You're currently viewing a generated
+ * bundled .js file. Feel free to view (and contribute to) the source code at
+ * our Github repository: https://github.com/dreamscached/obsidian-simple-steam-auth
+ */
 `;
 
 const prod = process.argv[2] === "production";

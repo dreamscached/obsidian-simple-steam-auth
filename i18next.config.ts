@@ -1,5 +1,5 @@
 import { defineConfig } from "i18next-cli";
-import i18nextSveltePlugin from "i18next-cli-plugin-svelte";
+import I18nextSveltePlugin from "i18next-cli-plugin-svelte";
 
 export default defineConfig({
 	locales: ["en", "cs", "en-GB", "ru", "de", "fr"],
@@ -12,5 +12,5 @@ export default defineConfig({
 		removeUnusedKeys: false,
 		functions: ["i18n.t"] // e.g. ignore obsidianI18n
 	},
-	plugins: [i18nextSveltePlugin]
+	plugins: [new I18nextSveltePlugin()]
 });
