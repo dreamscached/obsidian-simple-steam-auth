@@ -1,7 +1,7 @@
 {
   "id": "simple-steam-auth",
   "name": "Simple Steam Auth",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "minAppVersion": "1.12.3",
   "description": "Generate Steam Guard codes right in your vault.",
   "author": "dreamscached",
