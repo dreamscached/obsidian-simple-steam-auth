@@ -12,7 +12,5 @@ export default defineConfig({
 		removeUnusedKeys: false,
 		functions: ["i18n.t"] // e.g. ignore obsidianI18n
 	},
-	plugins: [
-		new I18nextSveltePlugin()
-	]
+	plugins: [new I18nextSveltePlugin()]
 });
