@@ -18,7 +18,6 @@
 import { mount, unmount, type ComponentProps } from "svelte";
 
 import { WidgetType } from "@codemirror/view";
-import deepEqual from "deep-equal";
 
 import { PLUGIN_CONTEXT } from "$lib/component.js";
 
@@ -48,11 +47,11 @@ export class SteamGuardCodeWidget extends WidgetType {
 
 	override eq(widget: SteamGuardCodeWidget): boolean {
 		// Prevent re-drawing instances with same props
-		return deepEqual(widget.props, this.props);
+		return widget.props.sharedSecret === this.props.sharedSecret;
 	}
 
 	override toDOM(): HTMLElement {
-		const span = document.createElement("span");
+		const span = createSpan();
 
 		this.instance = mount(SteamGuardCode, {
 			target: span,
@@ -63,10 +62,9 @@ export class SteamGuardCodeWidget extends WidgetType {
 		return span;
 	}
 
-	override async destroy(node: HTMLElement): Promise<void> {
+	override destroy(node: HTMLElement): void {
 		if (this.instance) {
-			await unmount(this.instance);
-			node.remove();
+			void unmount(this.instance).then(() => node.remove());
 		}
 	}
 

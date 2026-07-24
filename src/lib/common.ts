@@ -93,7 +93,7 @@ export function createMarkdownPostProcessor(plugin: SimpleSteamAuthPlugin) {
 	return (el: HTMLElement, ctx: MarkdownPostProcessorContext) => {
 		getSteamGuardCodeAnchorsDom(el).forEach((it) => {
 			const sharedSecret = getSteamGuardCodeSharedSecret(it.textContent);
-			const anchor = document.createElement("span");
+			const anchor = createSpan();
 			it.replaceWith(anchor);
 			ctx.addChild(
 				new MarkdownRenderComponent(plugin, SteamGuardCode, {
