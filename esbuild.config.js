@@ -1,10 +1,11 @@
+import { builtinModules } from "node:module";
+
 import { TsconfigPathsPlugin } from "@esbuild-plugins/tsconfig-paths";
 import esbuild from "esbuild";
 import esbuildSvelte from "esbuild-svelte";
 
 import { sveltePreprocess } from "svelte-preprocess";
 
-import builtins from "builtin-modules";
 import process from "process";
 
 const banner = `/*
@@ -38,7 +39,7 @@ const context = await esbuild.context({
 		"@lezer/highlight",
 		"@lezer/lr",
 		// We have our own impl bundled for web
-		...[...builtins].filter((it) => it !== "buffer")
+		...builtinModules.filter((it) => it !== "buffer")
 	],
 	plugins: [
 		TsconfigPathsPlugin({ tsconfig: "./tsconfig.json" }),

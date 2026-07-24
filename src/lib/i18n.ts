@@ -24,14 +24,12 @@ export async function initI18n() {
 		fallbackLng: "en",
 		// prettier-ignore
 		resources: {
-			/* eslint-disable @typescript-eslint/no-explicit-any */
-			"en": ((await import("$assets/i18n/en.json", { with: { type: "json" } })) as any).default,
-			"en-GB": ((await import("$assets/i18n/en-GB.json", { with: { type: "json" } })) as any).default,
-			"cs": ((await import("$assets/i18n/cs.json", { with: { type: "json" } })) as any).default,
-			"ru": ((await import("$assets/i18n/ru.json", { with: { type: "json" } })) as any).default,
-			"de": ((await import("$assets/i18n/de.json", { with: { type: "json" } })) as any).default,
-			"fr": ((await import("$assets/i18n/fr.json", { with: { type: "json" } })) as any).default
-			/* eslint-enable @typescript-eslint/no-explicit-any */
+			"en": (await import("$assets/i18n/en.json", { with: { type: "json" } })).default,
+			"en-GB": (await import("$assets/i18n/en-GB.json", { with: { type: "json" } })).default,
+			"cs": (await import("$assets/i18n/cs.json", { with: { type: "json" } })).default,
+			"ru": (await import("$assets/i18n/ru.json", { with: { type: "json" } })).default,
+			"de": (await import("$assets/i18n/de.json", { with: { type: "json" } })).default,
+			"fr": (await import("$assets/i18n/fr.json", { with: { type: "json" } })).default
 		}
 	});
 }

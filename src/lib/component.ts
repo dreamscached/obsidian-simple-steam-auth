@@ -60,7 +60,7 @@ export class MarkdownRenderComponent<
 		this.component = mount(this.mountConstructor, this.mountOptions);
 	}
 
-	override onunload() {
-		return unmount(this.component!);
+	override onunload(): void {
+		void unmount(this.component!);
 	}
 }
