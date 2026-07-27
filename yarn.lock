@@ -1239,10 +1239,10 @@ __metadata:
 
 "@types/steam-totp@patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch":
   version: 2.1.2
-  resolution: "@types/steam-totp@patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch::version=2.1.2&hash=75025b"
+  resolution: "@types/steam-totp@patch:@types/steam-totp@npm%3A2.1.2#~/.yarn/patches/@types-steam-totp-npm-2.1.2-9af0a9046e.patch::version=2.1.2&hash=493371"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/8d7525c93c9948db989685bacccebbaee8062aff18f7b71624670659cd5b6b0ad0d6fb564a4332267250030eb8844b71419a545c6cea6b4144511ddba8cb0ffe
+  checksum: 10c0/13c30e0065a8a811f670775d2c1f51318427166a28760bcead67aa54b9f2c5d691af3806daa9e761331c27d8ea23d2c0dbee55782058732d87d30215bc4d6a83
   languageName: node
   linkType: hard
 
@@ -3199,8 +3199,8 @@ __metadata:
 
 "steam-totp@patch:steam-totp@npm%3A2.1.2#~/.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch":
   version: 2.1.2
-  resolution: "steam-totp@patch:steam-totp@npm%3A2.1.2#~/.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch::version=2.1.2&hash=c38296"
-  checksum: 10c0/12c89bc3b5feb4842f0f837459dc167bca346402661fb514532dc3f4e0711f98ee9e1a4023019e791aabd329f7d92d23e1d11f2f4aa2c3176370fc2043e9383e
+  resolution: "steam-totp@patch:steam-totp@npm%3A2.1.2#~/.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch::version=2.1.2&hash=05d4e0"
+  checksum: 10c0/c6b3081aa2a9fc0415e956e59528cebb1e91b7851a6f0f2bdbdb4e36a2a063555715ee1697bc4d481a0f3887f9edd28199f69c132b419226c6f023fba350b1b3
   languageName: node
   linkType: hard
 
