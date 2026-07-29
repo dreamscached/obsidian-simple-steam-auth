@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import i18n from "i18next";
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, PluginSettingTab, Setting, type SettingDefinitionItem } from "obsidian";
 
 import type SimpleSteamAuthPlugin from "../../main.js";
 
@@ -33,6 +33,41 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 		this.settings = getSettings();
 	}
 
+	override getSettingDefinitions(): SettingDefinitionItem<keyof SimpleSteamAuthSettings>[] {
+		return [
+			{
+				name: i18n.t("settings.general.showCopyButton.name"),
+				desc: i18n.t("settings.general.showCopyButton.desc"),
+				control: { type: "toggle", key: "showCopyButton" }
+			},
+			{
+				name: i18n.t("settings.general.showCodeByDefault.name"),
+				desc: this.getShowCodeByDefaultDesc(),
+				control: { type: "toggle", key: "showCodeByDefault" }
+			}
+		];
+	}
+
+	override getControlValue(key: keyof SimpleSteamAuthSettings): unknown {
+		return this.settings[key];
+	}
+
+	override async setControlValue(
+		key: keyof SimpleSteamAuthSettings,
+		value: unknown
+	): Promise<void> {
+		switch (key) {
+			case "showCopyButton":
+			case "showCodeByDefault":
+				this.settings[key] = value as boolean;
+				break;
+		}
+		await this.plugin.saveSettings();
+	}
+
+	/**
+	 * @deprecated Fallback for Obsidian versions older than 1.13.0. Use {@link getSettingDefinitions} instead.
+	 */
 	override display() {
 		this.containerEl.empty();
 		this.addShowCopyButton();
@@ -54,26 +89,28 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	private addShowCodeByDefault() {
 		new Setting(this.containerEl)
 			.setName(i18n.t("settings.general.showCodeByDefault.name"))
-			.setDesc(
-				createFragment((descEl) => {
-					const div = descEl.createDiv();
-					div.createSpan({
-						text: i18n.t("settings.general.showCodeByDefault.desc.span.0")
-					});
-					div.createEl("br");
-					div.createEl("b", {
-						text: i18n.t("settings.general.showCodeByDefault.desc.b.0")
-					});
-					div.createSpan({
-						text: i18n.t("settings.general.showCodeByDefault.desc.span.1")
-					});
-				})
-			)
+			.setDesc(this.getShowCodeByDefaultDesc())
 			.addToggle((toggle) =>
 				toggle.setValue(this.settings.showCodeByDefault).onChange(async (value) => {
 					this.settings.showCodeByDefault = value;
 					await this.plugin.saveSettings();
 				})
 			);
+	}
+
+	private getShowCodeByDefaultDesc(): DocumentFragment {
+		return createFragment((descEl) => {
+			const div = descEl.createDiv();
+			div.createSpan({
+				text: i18n.t("settings.general.showCodeByDefault.desc.span.0")
+			});
+			div.createEl("br");
+			div.createEl("b", {
+				text: i18n.t("settings.general.showCodeByDefault.desc.b.0")
+			});
+			div.createSpan({
+				text: i18n.t("settings.general.showCodeByDefault.desc.span.1")
+			});
+		});
 	}
 }
