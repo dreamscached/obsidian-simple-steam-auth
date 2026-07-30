@@ -1,7 +1,7 @@
 {
   "packageManager": "yarn@4.17.1",
   "name": "obsidian-simple-steam-auth",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "type": "module",
   "private": true,
   "scripts": {
