@@ -54,9 +54,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 		pluginInstance.events.on("refresh", updateAuthCode);
 		await updateAuthCode();
 	});
+
+	// Live Preview table cells start editing their Markdown source on pointerdown
+	// unless the event default is prevented, which puts the caret on the anchor
+	// and hides this component. Text selection is left alone in reading mode.
+	function onpointerdown(event: PointerEvent & { currentTarget: HTMLElement }) {
+		if (event.currentTarget.closest(".cm-editor")) event.preventDefault();
+	}
 </script>
 
-<div class="sg-container">
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class="sg-container" {onpointerdown}>
 	{#if authCode && error === undefined}
 		{@render authCodeSpan()}
 	{:else if error !== undefined}
