@@ -16,7 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 import i18n from "i18next";
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, PluginSettingTab, Setting, type SettingDefinitionItem } from "obsidian";
+
+import { ConfirmModal } from "$lib/modal.js";
 
 import type SimpleSteamAuthPlugin from "../../main.js";
 
@@ -33,6 +35,45 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 		this.settings = getSettings();
 	}
 
+	override getSettingDefinitions(): SettingDefinitionItem<keyof SimpleSteamAuthSettings>[] {
+		return [
+			{
+				name: i18n.t("settings.general.showCopyButton.name"),
+				desc: i18n.t("settings.general.showCopyButton.desc"),
+				control: { type: "toggle", key: "showCopyButton" }
+			},
+			{
+				name: i18n.t("settings.general.showCodeByDefault.name"),
+				desc: i18n.t("settings.general.showCodeByDefault.desc"),
+				// Rendered imperatively because a bound control switches on before
+				// the confirmation modal is answered.
+				render: (setting) => this.addShowCodeByDefaultToggle(setting)
+			}
+		];
+	}
+
+	override getControlValue(key: keyof SimpleSteamAuthSettings): unknown {
+		return this.settings[key];
+	}
+
+	override async setControlValue(
+		key: keyof SimpleSteamAuthSettings,
+		value: unknown
+	): Promise<void> {
+		switch (key) {
+			case "showCopyButton":
+				this.settings[key] = value as boolean;
+				break;
+			// showCodeByDefault is not bound to a control, see getSettingDefinitions.
+			case "showCodeByDefault":
+				return;
+		}
+		await this.plugin.saveSettings();
+	}
+
+	/**
+	 * @deprecated Fallback for Obsidian versions older than 1.13.0.
+	 */
 	override display() {
 		this.containerEl.empty();
 		this.addShowCopyButton();
@@ -52,28 +93,37 @@ export class SimpleSteamAuthSettingsTab extends PluginSettingTab {
 	}
 
 	private addShowCodeByDefault() {
-		new Setting(this.containerEl)
+		const setting = new Setting(this.containerEl)
 			.setName(i18n.t("settings.general.showCodeByDefault.name"))
-			.setDesc(
-				createFragment((descEl) => {
-					const div = descEl.createDiv();
-					div.createSpan({
-						text: i18n.t("settings.general.showCodeByDefault.desc.span.0")
-					});
-					div.createEl("br");
-					div.createEl("b", {
-						text: i18n.t("settings.general.showCodeByDefault.desc.b.0")
-					});
-					div.createSpan({
-						text: i18n.t("settings.general.showCodeByDefault.desc.span.1")
-					});
-				})
-			)
-			.addToggle((toggle) =>
-				toggle.setValue(this.settings.showCodeByDefault).onChange(async (value) => {
-					this.settings.showCodeByDefault = value;
-					await this.plugin.saveSettings();
-				})
-			);
+			.setDesc(i18n.t("settings.general.showCodeByDefault.desc"));
+		this.addShowCodeByDefaultToggle(setting);
+	}
+
+	private addShowCodeByDefaultToggle(setting: Setting) {
+		setting.addToggle((toggle) =>
+			toggle.setValue(this.settings.showCodeByDefault).onChange(async (value) => {
+				// setValue() below re-enters this handler, ignore its own changes.
+				if (value === this.settings.showCodeByDefault) return;
+
+				// Clicking the toggle already switched it on, put it back until the warning is accepted.
+				if (value) {
+					toggle.setValue(false);
+					if (!(await this.confirmShowCodeByDefault())) return;
+				}
+
+				this.settings.showCodeByDefault = value;
+				toggle.setValue(value);
+				await this.plugin.saveSettings();
+			})
+		);
+	}
+
+	private confirmShowCodeByDefault(): Promise<boolean> {
+		return new ConfirmModal(this.app, {
+			title: i18n.t("settings.general.showCodeByDefault.confirm.title"),
+			message: i18n.t("settings.general.showCodeByDefault.confirm.message"),
+			confirmText: i18n.t("settings.general.showCodeByDefault.confirm.confirm"),
+			cancelText: i18n.t("settings.general.showCodeByDefault.confirm.cancel")
+		}).confirm();
 	}
 }

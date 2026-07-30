@@ -2790,7 +2790,7 @@ __metadata:
     i18next: "npm:^26.0.3"
     i18next-cli: "npm:^1.51.5"
     i18next-cli-plugin-svelte: "npm:^2.0.0"
-    obsidian: "npm:^1.12.3"
+    obsidian: "npm:^1.13.1"
     prettier: "npm:^3.8.1"
     prettier-plugin-svelte: "npm:^3.5.1"
     steam-totp: "patch:steam-totp@npm%3A2.1.2#~/.yarn/patches/steam-totp-npm-2.1.2-aaff39ad0a.patch"
@@ -2804,16 +2804,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"obsidian@npm:^1.12.3":
-  version: 1.12.3
-  resolution: "obsidian@npm:1.12.3"
+"obsidian@npm:^1.13.1":
+  version: 1.13.1
+  resolution: "obsidian@npm:1.13.1"
   dependencies:
     "@types/codemirror": "npm:5.60.8"
     moment: "npm:2.29.4"
   peerDependencies:
     "@codemirror/state": 6.5.0
     "@codemirror/view": 6.38.6
-  checksum: 10c0/17786c4740e147ce6805dc93d3bd62750e87993bc6c21df519f1fdc8fc6cdc61ac478d78bf299f0f512bf0d53a1c2f4ff92b0905a82e472fccd9b10880b564fb
+  checksum: 10c0/cc7bf4de68c36edfd7e3a348b45c8919d01bc6fb04b1f03fae74092156bf78add092f0f94c3885599fefbb3a83740630360044a1d899bd299c2016d345311521
   languageName: node
   linkType: hard
 
